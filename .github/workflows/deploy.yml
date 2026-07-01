@@ -1,4 +1,4 @@
-name: Build Edmonton Doctors
+name: Build and Deploy Edmonton Doctors
 
 on:
   push:
@@ -11,12 +11,17 @@ permissions:
   contents: read
 
 concurrency:
-  group: edmontondoctors-build
+  group: edmontondoctors-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_PATH: /home/edmonton/htdocs/edmonton.doctor
+      NEXT_PUBLIC_FORMS_API_URL: ${{ secrets.NEXT_PUBLIC_FORMS_API_URL }}
+      NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID: ${{ secrets.NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID }}
+      NEXT_PUBLIC_TURNSTILE_SITE_KEY: ${{ secrets.NEXT_PUBLIC_TURNSTILE_SITE_KEY }}
 
     steps:
       - name: Checkout repository
@@ -33,3 +38,54 @@ jobs:
 
       - name: Build static export
         run: npm run build
+
+      - name: Validate deployment secrets
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CLOUDPANEL_HOST: ${{ secrets.CLOUDPANEL_HOST }}
+          CLOUDPANEL_USER: ${{ secrets.CLOUDPANEL_USER }}
+          CLOUDPANEL_SSH_KEY: ${{ secrets.CLOUDPANEL_SSH_KEY }}
+          CLOUDPANEL_PORT: ${{ secrets.CLOUDPANEL_PORT }}
+        run: |
+          missing=0
+          for secret_name in CLOUDPANEL_HOST CLOUDPANEL_USER CLOUDPANEL_SSH_KEY CLOUDPANEL_PORT; do
+            if [ -z "${!secret_name}" ]; then
+              echo "::error::Missing GitHub repository secret: ${secret_name}"
+              missing=1
+            fi
+          done
+          if [ "${missing}" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Configure SSH
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CLOUDPANEL_HOST: ${{ secrets.CLOUDPANEL_HOST }}
+          CLOUDPANEL_SSH_KEY: ${{ secrets.CLOUDPANEL_SSH_KEY }}
+          CLOUDPANEL_PORT: ${{ secrets.CLOUDPANEL_PORT }}
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          printf '%s\n' "${CLOUDPANEL_SSH_KEY}" > ~/.ssh/cloudpanel_deploy_key
+          chmod 600 ~/.ssh/cloudpanel_deploy_key
+          ssh-keyscan -p "${CLOUDPANEL_PORT}" -H "${CLOUDPANEL_HOST}" >> ~/.ssh/known_hosts
+
+      - name: Deploy static export to CloudPanel
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          CLOUDPANEL_HOST: ${{ secrets.CLOUDPANEL_HOST }}
+          CLOUDPANEL_USER: ${{ secrets.CLOUDPANEL_USER }}
+          CLOUDPANEL_PORT: ${{ secrets.CLOUDPANEL_PORT }}
+        run: |
+          ssh -i ~/.ssh/cloudpanel_deploy_key \
+            -p "${CLOUDPANEL_PORT}" \
+            -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes \
+            "${CLOUDPANEL_USER}@${CLOUDPANEL_HOST}" \
+            "mkdir -p '${DEPLOY_PATH}'"
+
+          rsync -az --delete \
+            --exclude '.well-known/' \
+            -e "ssh -i ~/.ssh/cloudpanel_deploy_key -p ${CLOUDPANEL_PORT} -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" \
+            out/ "${CLOUDPANEL_USER}@${CLOUDPANEL_HOST}:${DEPLOY_PATH}/"
