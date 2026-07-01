@@ -1,0 +1,234 @@
+.wrap {
+  max-width: 920px;
+}
+
+.header {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title {
+  margin-top: 0.8rem;
+  color: var(--brand-color-ink);
+  font-size: clamp(2.3rem, 5vw, 4.4rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.02;
+}
+
+.titleAccent {
+  color: var(--brand-color-primary-strong);
+}
+
+.titleLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.timeline {
+  position: relative;
+  display: flex;
+  max-width: 780px;
+  flex-direction: column;
+  gap: clamp(2.25rem, 6vw, 4.5rem);
+  margin: clamp(2.5rem, 6vw, 4rem) auto 0;
+  padding-left: clamp(3.25rem, 7vw, 4.8rem);
+}
+
+.timeline::before,
+.timeline::after {
+  position: absolute;
+  left: clamp(1.22rem, 2.8vw, 1.44rem);
+  top: 1.35rem;
+  width: 2px;
+  border-radius: 999px;
+  content: "";
+}
+
+.timeline::before {
+  bottom: 1.35rem;
+  background: rgba(15, 118, 110, 0.2);
+}
+
+.timeline::after {
+  height: var(--timeline-progress);
+  max-height: calc(100% - 2.7rem);
+  background: linear-gradient(
+    180deg,
+    var(--brand-color-primary),
+    var(--brand-color-secondary)
+  );
+  transition: height 360ms ease;
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 7.25rem;
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease;
+}
+
+.stepActive {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.stepInactive {
+  opacity: 0.42;
+  transform: translateX(-0.25rem);
+}
+
+.markerWrap {
+  position: absolute;
+  left: calc(-1 * clamp(3.25rem, 7vw, 4.8rem));
+  top: 0.15rem;
+  z-index: 1;
+  display: flex;
+  width: clamp(2.5rem, 5vw, 2.9rem);
+  justify-content: center;
+}
+
+.marker {
+  display: inline-flex;
+  width: 2.55rem;
+  height: 2.55rem;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(15, 118, 110, 0.28);
+  border-radius: 999px;
+  background: var(--brand-color-paper);
+  color: var(--brand-color-primary-strong);
+  font-family: var(--brand-font-body);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  transition:
+    border-color 260ms ease,
+    background-color 260ms ease,
+    color 260ms ease,
+    box-shadow 260ms ease,
+    transform 260ms ease;
+}
+
+.stepActive .marker {
+  border-color: var(--brand-color-primary);
+  background: var(--brand-color-primary);
+  color: #ffffff;
+  box-shadow: 0 14px 34px rgba(15, 118, 110, 0.24);
+  transform: scale(1.04);
+}
+
+.content {
+  max-width: 640px;
+}
+
+.content p {
+  margin: 0;
+  color: var(--brand-color-primary-strong);
+  font-family: var(--brand-font-body);
+  font-size: 0.78rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.content h3 {
+  margin: 0.2rem 0 0;
+  color: var(--brand-color-ink);
+  font-size: clamp(1.45rem, 3vw, 1.95rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.12;
+}
+
+.content span {
+  display: block;
+  margin-top: 0.65rem;
+  color: #334155;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.65;
+}
+
+.ctaWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.cta {
+  gap: 0.5rem;
+  margin-top: clamp(2.5rem, 6vw, 4rem);
+}
+
+@media (max-width: 640px) {
+  .wrap {
+    max-width: 100%;
+  }
+
+  .header {
+    text-align: left;
+  }
+
+  .title {
+    font-size: clamp(2.1rem, 9vw, 3rem);
+  }
+
+  .timeline {
+    gap: 2rem;
+    margin-top: 2.25rem;
+    padding-left: 3.35rem;
+  }
+
+  .timeline::before,
+  .timeline::after {
+    left: 1.28rem;
+  }
+
+  .step {
+    min-height: auto;
+  }
+
+  .stepInactive {
+    opacity: 0.68;
+    transform: none;
+  }
+
+  .markerWrap {
+    left: -3.35rem;
+  }
+
+  .marker {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+
+  .content h3 {
+    font-size: 1.35rem;
+  }
+
+  .content span {
+    font-size: 1rem;
+  }
+
+  .cta {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline::after,
+  .step,
+  .marker {
+    transition: none;
+  }
+
+  .stepInactive {
+    transform: none;
+  }
+}

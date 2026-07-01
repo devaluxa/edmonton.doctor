@@ -1,0 +1,41 @@
+.section.section {
+  padding-block: clamp(3.25rem, 6vw, 5rem);
+}
+
+.headingText,
+.headingLine {
+  display: block;
+}
+
+.headingText {
+  max-width: 47rem;
+  font-size: clamp(1.85rem, 3.4vw, 3rem);
+  line-height: 1.08;
+}
+
+.headingLine {
+  white-space: nowrap;
+}
+
+.section :global(.medical-cta-band > div),
+.section :global(.medical-cta-actions),
+.section :global(.medical-section-title),
+.section :global(.medical-section-intro) {
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .section.section {
+    padding-block: 3rem;
+  }
+
+  .headingText {
+    font-size: clamp(1.65rem, 7.1vw, 2.1rem);
+  }
+}
+
+@media (max-width: 360px) {
+  .headingText {
+    font-size: clamp(1.4rem, 6.5vw, 1.55rem);
+  }
+}

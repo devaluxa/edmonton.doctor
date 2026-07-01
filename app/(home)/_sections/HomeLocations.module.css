@@ -1,0 +1,62 @@
+.section {
+  scroll-margin-top: var(--brand-hero-header-offset-mobile);
+}
+
+.heading {
+  margin-inline: auto;
+  max-width: 58rem;
+  font-size: clamp(2.15rem, 4vw, 3rem);
+}
+
+.headingLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.description {
+  max-width: 48rem;
+  margin-inline: auto;
+  color: #334155;
+}
+
+.compactCards :global(.medical-location-title) {
+  margin-top: 0;
+}
+
+.compactCards :global(.medical-location-address) {
+  color: #334155;
+}
+
+.compactCards :global(.medical-location-address p) {
+  margin: 0;
+}
+
+.compactCards :global(.medical-location-service) {
+  display: -webkit-box;
+  overflow: hidden;
+  min-height: 3.2em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+@media (min-width: 1024px) {
+  .section {
+    scroll-margin-top: var(--brand-hero-header-offset-desktop);
+  }
+
+  .compactCards :global(.medical-location-address p) {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .heading {
+    max-width: 100%;
+    font-size: clamp(1.75rem, 7.6vw, 2.55rem);
+  }
+
+  .description {
+    max-width: 32rem;
+    text-align: left;
+  }
+}

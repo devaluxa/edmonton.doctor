@@ -1,0 +1,221 @@
+.section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.92) 48%,
+      rgba(246, 250, 249, 0.9) 100%
+    ),
+    url("/images/medical/clinic-reception.png") center / cover no-repeat;
+  border-block: 1px solid rgba(219, 231, 228, 0.75);
+}
+
+.section::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(246, 250, 249, 0.82)),
+    radial-gradient(circle at 12% 18%, rgba(15, 118, 110, 0.1), transparent 32%);
+  content: "";
+}
+
+.inner {
+  display: grid;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.content {
+  order: 1;
+  min-width: 0;
+}
+
+.status {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  border: 1px solid rgba(15, 118, 110, 0.22);
+  border-radius: var(--brand-radius-control);
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--brand-color-primary-strong);
+  margin-top: 1rem;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.title {
+  max-width: 40rem;
+  margin-top: 1rem;
+  color: var(--brand-color-ink);
+  font-size: clamp(2.15rem, 4vw, 3.35rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1.03;
+}
+
+.titleLine {
+  display: block;
+  white-space: nowrap;
+}
+
+.intro {
+  max-width: 42rem;
+  margin-top: 1.1rem;
+  color: #334155;
+  font-size: clamp(1.02rem, 1.35vw, 1.15rem);
+  font-weight: 550;
+  line-height: 1.7;
+}
+
+.body {
+  max-width: 42rem;
+  margin-top: 0.85rem;
+  color: #334155;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.65;
+}
+
+.focusList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.focusItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  border: 1px solid rgba(15, 118, 110, 0.18);
+  border-radius: var(--brand-radius-control);
+  background: rgba(255, 255, 255, 0.9);
+  color: #203342;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.35;
+  box-shadow: 0 8px 26px rgba(18, 32, 42, 0.045);
+}
+
+.focusItem svg {
+  flex: 0 0 auto;
+  color: var(--brand-color-primary);
+}
+
+.actions {
+  margin-top: 1.55rem;
+}
+
+.media {
+  order: 2;
+  min-width: 0;
+}
+
+.imageCard {
+  position: relative;
+  width: min(100%, 34rem);
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 8px solid rgba(255, 255, 255, 0.96);
+  border-radius: 1.1rem;
+  background: var(--brand-color-paper);
+  box-shadow:
+    0 28px 80px rgba(18, 32, 42, 0.15),
+    0 12px 30px rgba(15, 118, 110, 0.12);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.imageBadge {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: min(18rem, calc(100% - 2rem));
+  border: 1px solid rgba(219, 231, 228, 0.9);
+  border-radius: var(--brand-radius-card);
+  background: rgba(255, 255, 255, 0.94);
+  padding: 0.85rem 1rem;
+  color: var(--brand-color-ink);
+  box-shadow: 0 14px 36px rgba(18, 32, 42, 0.12);
+}
+
+.imageBadge span,
+.imageBadge strong {
+  display: block;
+}
+
+.imageBadge span {
+  color: var(--brand-color-primary-strong);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.imageBadge strong {
+  margin-top: 0.35rem;
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1.25;
+}
+
+@media (min-width: 900px) {
+  .inner {
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  }
+
+  .media {
+    order: 1;
+  }
+
+  .content {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding-block: 3rem;
+  }
+
+  .status {
+    font-size: 0.72rem;
+  }
+
+  .title {
+    font-size: clamp(2rem, 8vw, 2.55rem);
+  }
+
+  .focusList {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .focusItem {
+    width: 100%;
+  }
+
+  .imageCard {
+    width: 100%;
+    aspect-ratio: 4 / 4.6;
+    border-width: 6px;
+  }
+}
