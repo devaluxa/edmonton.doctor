@@ -45,8 +45,8 @@ const forbiddenVisibleCopy = [
   "device repair",
 ];
 
-const onBookingSubmissionsUrl = "https://api.onbooking.ca/v1/submissions";
 const onBookingRegistrationFormId = "a8560735-5edd-443a-beba-990bd08cc8d3";
+const onBookingSubmissionsUrl = `https://api.onbooking.ca/v1/submissions/${onBookingRegistrationFormId}`;
 
 async function fillRegisterFunnel(page: import("@playwright/test").Page) {
   await page.locator('input[name="name"]').fill("Playwright Test Patient");

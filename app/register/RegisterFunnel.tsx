@@ -76,8 +76,8 @@ const trackingKeys = [
   "wbraid",
 ];
 
-const defaultFormsApiUrl = "https://api.onbooking.ca/v1/submissions";
 const defaultRegistrationFormId = "a8560735-5edd-443a-beba-990bd08cc8d3";
+const defaultFormsApiUrl = "https://api.onbooking.ca/v1/submissions";
 const formsApiUrl =
   process.env.NEXT_PUBLIC_FORMS_API_URL?.trim() || defaultFormsApiUrl;
 const registrationFormId =
@@ -94,9 +94,20 @@ function getSubmitUrl() {
   }
 
   const normalized = formsApiUrl.replace(/\/+$/, "");
-  return normalized.endsWith("/v1/submissions")
-    ? normalized
-    : `${normalized}/v1/submissions`;
+
+  if (new RegExp(`/v1/submissions/${registrationFormId}$`, "i").test(normalized)) {
+    return normalized;
+  }
+
+  if (/\/v1\/submissions\/[0-9a-f-]{36}$/i.test(normalized)) {
+    return normalized;
+  }
+
+  if (normalized.endsWith("/v1/submissions")) {
+    return `${normalized}/${registrationFormId}`;
+  }
+
+  return `${normalized}/v1/submissions/${registrationFormId}`;
 }
 
 function getTrackingData() {
