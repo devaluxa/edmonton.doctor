@@ -15,7 +15,7 @@ test.describe("homepage review", () => {
     page,
     request,
   }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     await expect(
       page.getByRole("heading", {
@@ -117,7 +117,7 @@ test.describe("homepage review", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     const locations = page.locator("#locations");
     await expect(
@@ -189,7 +189,7 @@ test.describe("homepage review", () => {
   for (const width of [375, 390]) {
     test(`homepage is mobile stable at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 950 });
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       await expect(
         page.getByRole("heading", {
@@ -252,7 +252,7 @@ test.describe("homepage review", () => {
 
     for (const viewport of viewports) {
       await page.setViewportSize(viewport.size);
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       const metrics = await page.evaluate(() => {
         const rectFor = (selector: string) => {
@@ -351,7 +351,7 @@ test.describe("homepage review", () => {
         width: viewport.width,
         height: viewport.height,
       });
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       const overlaps = await page.evaluate(() => {
         const intersects = (a: DOMRect, b: DOMRect) =>
@@ -402,7 +402,7 @@ test.describe("homepage review", () => {
 
   test("FAQ accordions and process badges are aligned", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     await expect(page.locator('[data-testid="process-timeline"]')).toBeVisible();
     await expect(
@@ -475,7 +475,7 @@ test.describe("homepage review", () => {
     page,
   }) => {
     await page.setViewportSize({ width: 1440, height: 1000 });
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     const processSteps = page.locator('[data-testid="home-process-step"]');
 
@@ -518,7 +518,7 @@ test.describe("homepage review", () => {
         width: viewport.width,
         height: viewport.height,
       });
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       await expect(
         page.getByRole("heading", {
@@ -573,7 +573,7 @@ test.describe("homepage review", () => {
         width: viewport.width,
         height: viewport.height,
       });
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       const headingLines = await page.evaluate(() => {
         const headings = Array.from(
@@ -673,7 +673,7 @@ test.describe("homepage review", () => {
         width: viewport.width,
         height: viewport.height,
       });
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       await expect(
         page.getByRole("heading", {
@@ -713,8 +713,7 @@ test.describe("homepage review", () => {
   test("doctor section uses premium styling and Cloudinary portrait", async ({
     page,
   }) => {
-    const cloudinaryPortrait =
-      "https://res.cloudinary.com/dcb389szc/image/upload/v1782676373/EdmontonDoctors/lasing_kingely.jpg";
+    const cloudinaryPortraitAsset = "EdmontonDoctors/lasing_kingely.jpg";
 
     for (const viewport of [
       { name: "desktop", width: 1440, height: 1000, maxTitleSize: 56 },
@@ -724,7 +723,7 @@ test.describe("homepage review", () => {
         width: viewport.width,
         height: viewport.height,
       });
-      await page.goto("/");
+      await page.goto("/", { waitUntil: "domcontentloaded" });
 
       await expect(
         page.getByRole("heading", { name: "Meet Dr. Kingsley Lasing" }),
@@ -735,7 +734,10 @@ test.describe("homepage review", () => {
 
       const image = page.locator('[data-testid="doctor-featured-image"]');
       await expect(image).toBeVisible();
-      await expect(image).toHaveAttribute("src", cloudinaryPortrait);
+      await expect(image).toHaveAttribute(
+        "src",
+        new RegExp(cloudinaryPortraitAsset.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")),
+      );
       await expect
         .poll(
           () =>
@@ -798,7 +800,7 @@ test.describe("homepage review", () => {
     page,
     request,
   }) => {
-    await page.goto("/");
+    await page.goto("/", { waitUntil: "domcontentloaded" });
 
     const hrefs = await page.locator("header a[href]").evaluateAll((links) =>
       Array.from(

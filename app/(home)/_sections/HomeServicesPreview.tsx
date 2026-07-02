@@ -1,9 +1,4 @@
-import {
-  Baby,
-  HeartPulse,
-  ShieldCheck,
-  Stethoscope,
-} from "lucide-react";
+import { HeartPulse, ShieldCheck, Stethoscope, Venus } from "lucide-react";
 import { Reveal, StaggerGroup, StaggerItem } from "../_components/Reveal";
 import styles from "./HomeServicesPreview.module.css";
 
@@ -30,11 +25,11 @@ const services = [
     href: "/services/vaccinations-preventative-care/",
   },
   {
-    icon: Baby,
-    title: "Whole Family Health",
+    icon: Venus,
+    title: "Women's Health",
     description:
-      "Care for women, men, children, older adults, and families who want accessible Edmonton care.",
-    href: "/services/womens-mens-childrens-health/",
+      "Pap tests, contraception advice, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+    href: "/services/womens-health-edmonton/",
   },
 ];
 

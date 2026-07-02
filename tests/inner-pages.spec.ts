@@ -4,6 +4,7 @@ const innerPages = [
   "/services/",
   "/services/walk-in-care/",
   "/services/family-medicine/",
+  "/services/womens-health-edmonton/",
   "/family-doctor/",
   "/locations/",
   "/faq/",
@@ -30,6 +31,10 @@ const legacyMovedPages = [
   {
     path: "/doctors/dr-kingsley-lasing/",
     target: "/family-doctor/",
+  },
+  {
+    path: "/services/womens-mens-childrens-health/",
+    target: "/services/womens-health-edmonton/",
   },
 ];
 
@@ -68,7 +73,7 @@ test.describe("inner medical page system", () => {
     test(`${path} uses shared medical layout without legacy copy`, async ({
       page,
     }) => {
-      await page.goto(path);
+      await page.goto(path, { waitUntil: "domcontentloaded" });
 
       await expect(page.locator("main.medical-page")).toHaveCount(1);
       await expect(page.locator('nav[aria-label="Breadcrumb"]')).toHaveCount(0);
@@ -91,7 +96,7 @@ test.describe("inner medical page system", () => {
     await page.setViewportSize({ width: 375, height: 900 });
 
     for (const path of innerPages) {
-      await page.goto(path);
+      await page.goto(path, { waitUntil: "domcontentloaded" });
 
       const layout = await page.evaluate(() => ({
         clientWidth: document.documentElement.clientWidth,
@@ -259,7 +264,7 @@ test.describe("inner medical page system", () => {
 
   test("register page uses a doctor-selection funnel", async ({ page }) => {
     await page.setViewportSize({ width: 1440, height: 1100 });
-    await page.goto("/register/");
+    await page.goto("/register/", { waitUntil: "domcontentloaded" });
 
     await expect(
       page.getByRole("heading", {
@@ -281,7 +286,11 @@ test.describe("inner medical page system", () => {
       );
     expect(new Set(portraitSources).size).toBe(6);
 
-    await doctorCards.filter({ hasText: "Dr. Asim Bilal" }).click();
+    await page
+      .locator(
+        '[data-testid="register-doctor-card"][data-doctor-slug="dr-asim-bilal"]',
+      )
+      .click();
     await expect(page.locator('input[name="preferredDoctor"]')).toHaveValue(
       "Dr. Asim Bilal",
     );
@@ -298,7 +307,9 @@ test.describe("inner medical page system", () => {
       "https://qstb8.healthquest.ca:3000/onlinebooking",
     );
 
-    await doctorCards.filter({ hasText: "Dr. Nosa" }).click();
+    await page
+      .locator('[data-testid="register-doctor-card"][data-doctor-slug="dr-nosa"]')
+      .click();
     await expect(page.locator('input[name="preferredDoctor"]')).toHaveValue(
       "Dr. Nosa",
     );
@@ -322,7 +333,7 @@ test.describe("inner medical page system", () => {
   }) => {
     for (const width of [375, 390, 1440, 1680]) {
       await page.setViewportSize({ width, height: 1200 });
-      await page.goto("/register/");
+      await page.goto("/register/", { waitUntil: "domcontentloaded" });
 
       const layout = await page.evaluate(() => {
         const heading = document.querySelector("h1")?.getBoundingClientRect();
@@ -367,7 +378,7 @@ test.describe("inner medical page system", () => {
   test("location-specific registration routes preselect the clinic", async ({
     page,
   }) => {
-    await page.goto("/register-bev/");
+    await page.goto("/register-bev/", { waitUntil: "domcontentloaded" });
     await expect(page.locator('input[name="preferredLocation"]')).toHaveValue(
       "beverly-medical-center",
     );
@@ -375,13 +386,193 @@ test.describe("inner medical page system", () => {
       "https://cloud.healthquest.ca:45254/onlinebooking",
     );
 
-    await page.goto("/register-balwin/");
+    await page.goto("/register-balwin/", { waitUntil: "domcontentloaded" });
     await expect(page.locator('input[name="preferredLocation"]')).toHaveValue(
       "balwin-medical-centre",
     );
     await expect(page.locator('input[name="bookingHref"]')).toHaveValue(
       "https://qstb8.healthquest.ca:3000/onlinebooking",
     );
+  });
+
+  test("women's health service page uses focused local copy and square hero image", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1440, height: 1200 });
+    await page.goto("/services/womens-health-edmonton/");
+
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: "Women's Health Clinic in Edmonton",
+      }),
+    ).toBeVisible();
+    await expect(page.locator("h1")).toHaveCount(1);
+
+    for (const text of [
+      "Essential care for every stage of a woman's life.",
+      "Pap Tests & Cervical Screening",
+      "Contraception & Birth Control",
+      "Menopause & Perimenopause",
+      "Women's Health Care In North Edmonton & Northeast Edmonton",
+      "Women's Health FAQ",
+      "Helpful Next Steps",
+    ]) {
+      await expect(page.getByText(text, { exact: false }).first()).toBeVisible();
+    }
+
+    for (const staleText of [
+      "Care For Women, Men, Children, And Families",
+      "More Primary Care Pages",
+      "Women, Men And Children's Health",
+      "Whole Family Health",
+    ]) {
+      await expect(page.getByText(staleText, { exact: false })).toHaveCount(0);
+    }
+
+    await expect(
+      page
+        .locator("main")
+        .getByRole("link", { name: "Book Appointment" })
+        .first(),
+    ).toHaveAttribute("href", "/register/");
+
+    const hero = await page
+      .locator(".medical-hero-media")
+      .first()
+      .evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const image = element.querySelector("img") as HTMLImageElement | null;
+
+        return {
+          width: rect.width,
+          height: rect.height,
+          imageLoaded: Boolean(
+            image?.complete && image.naturalWidth > 0 && image.naturalHeight > 0,
+          ),
+        };
+      });
+
+    expect(hero.imageLoaded).toBe(true);
+    expect(hero.width / hero.height).toBeGreaterThan(0.9);
+    expect(hero.width / hero.height).toBeLessThan(1.1);
+
+    const faqJsonLdExists = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((scripts) =>
+        scripts.some((script) => {
+          try {
+            return JSON.parse(script.textContent || "{}")["@type"] === "FAQPage";
+          } catch {
+            return false;
+          }
+        }),
+      );
+    expect(faqJsonLdExists).toBe(true);
+  });
+
+  test("women's health service page stays clean on mobile", async ({ page }) => {
+    for (const width of [375, 390]) {
+      await page.setViewportSize({ width, height: 1100 });
+      await page.goto("/services/womens-health-edmonton/", {
+        waitUntil: "domcontentloaded",
+      });
+
+      const layout = await page.evaluate(() => {
+        const hero = document
+          .querySelector(".medical-hero-media")
+          ?.getBoundingClientRect();
+
+        return {
+          clientWidth: document.documentElement.clientWidth,
+          scrollWidth: document.documentElement.scrollWidth,
+          heroWidth: hero?.width ?? 0,
+          heroLeft: hero?.left ?? 0,
+          heroRight: hero?.right ?? 0,
+        };
+      });
+
+      expect(layout.scrollWidth, `${width}px should not overflow`).toBeLessThanOrEqual(
+        layout.clientWidth + 1,
+      );
+      expect(layout.heroWidth, `${width}px hero image width`).toBeGreaterThan(0);
+      expect(layout.heroWidth, `${width}px hero image width`).toBeLessThanOrEqual(
+        layout.clientWidth,
+      );
+      expect(layout.heroLeft, `${width}px hero image left`).toBeGreaterThanOrEqual(0);
+      expect(layout.heroRight, `${width}px hero image right`).toBeLessThanOrEqual(
+        layout.clientWidth + 1,
+      );
+
+      const orphanHeadingLines = await page.evaluate(() => {
+        const headings = Array.from(
+          document.querySelectorAll<HTMLElement>("main h1, main h2"),
+        ).filter((heading) => {
+          const rect = heading.getBoundingClientRect();
+          const style = getComputedStyle(heading);
+
+          return (
+            rect.width > 0 &&
+            rect.height > 0 &&
+            style.visibility !== "hidden" &&
+            style.display !== "none"
+          );
+        });
+
+        const getWords = (heading: HTMLElement) => {
+          const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+          const words: Array<{ text: string; top: number }> = [];
+
+          while (walker.nextNode()) {
+            const node = walker.currentNode as Text;
+            const matches = Array.from((node.textContent ?? "").matchAll(/\S+/g));
+
+            for (const match of matches) {
+              const start = match.index ?? 0;
+              const range = document.createRange();
+              range.setStart(node, start);
+              range.setEnd(node, start + match[0].length);
+              const rect = Array.from(range.getClientRects()).find(
+                (item) => item.width > 0 && item.height > 0,
+              );
+              range.detach();
+
+              if (rect) {
+                words.push({ text: match[0], top: rect.top });
+              }
+            }
+          }
+
+          return words;
+        };
+
+        return headings.flatMap((heading) => {
+          const lines: Array<{ top: number; words: string[] }> = [];
+
+          for (const word of getWords(heading).sort((a, b) => a.top - b.top)) {
+            const existing = lines.find((line) => Math.abs(line.top - word.top) < 3);
+
+            if (existing) {
+              existing.words.push(word.text);
+            } else {
+              lines.push({ top: word.top, words: [word.text] });
+            }
+          }
+
+          return lines
+            .filter((line) => line.words.length === 1)
+            .map((line) => ({
+              heading: heading.textContent?.trim() || "",
+              words: line.words,
+            }));
+        });
+      });
+
+      expect(
+        orphanHeadingLines,
+        `${width}px should not have one-word H1/H2 lines`,
+      ).toEqual([]);
+    }
   });
 
   test("register funnel submits Balwin doctor payload to OnBooking and redirects", async ({
@@ -398,10 +589,11 @@ test.describe("inner medical page system", () => {
       });
     });
 
-    await page.goto("/register/");
+    await page.goto("/register/", { waitUntil: "domcontentloaded" });
     await page
-      .locator('[data-testid="register-doctor-card"]')
-      .filter({ hasText: "Dr. Asim Bilal" })
+      .locator(
+        '[data-testid="register-doctor-card"][data-doctor-slug="dr-asim-bilal"]',
+      )
       .click();
     await fillRegisterFunnel(page);
 
@@ -455,10 +647,9 @@ test.describe("inner medical page system", () => {
       });
     });
 
-    await page.goto("/register/");
+    await page.goto("/register/", { waitUntil: "domcontentloaded" });
     await page
-      .locator('[data-testid="register-doctor-card"]')
-      .filter({ hasText: "Dr. Nosa" })
+      .locator('[data-testid="register-doctor-card"][data-doctor-slug="dr-nosa"]')
       .click();
     await fillRegisterFunnel(page);
 
@@ -492,7 +683,7 @@ test.describe("inner medical page system", () => {
       });
     });
 
-    await page.goto("/register/");
+    await page.goto("/register/", { waitUntil: "domcontentloaded" });
     await fillRegisterFunnel(page);
     await page.getByRole("button", { name: "Send Request" }).click();
 
@@ -506,7 +697,7 @@ test.describe("inner medical page system", () => {
     page,
   }) => {
     for (const legacyPage of legacyMovedPages) {
-      await page.goto(legacyPage.path);
+      await page.goto(legacyPage.path, { waitUntil: "domcontentloaded" });
       await expect(page.getByText("Page Moved")).toBeVisible();
       await expect(
         page

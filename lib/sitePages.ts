@@ -31,6 +31,43 @@ export type ClinicServicePage = SeoConfig & {
   patientNeeds: string[];
   highlights: string[];
   relatedSlugs: string[];
+  primaryCtaLabel?: string;
+  heroImageShape?: "wide" | "square";
+  richContent?: {
+    serviceCards: Array<{
+      title: string;
+      description: string;
+    }>;
+    detailSections: Array<{
+      title: string;
+      description: string;
+    }>;
+    localSection: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+      communities: string[];
+    };
+    visitSteps: Array<{
+      title: string;
+      description: string;
+    }>;
+    bookingReasons: Array<{
+      title: string;
+      description: string;
+    }>;
+    helpfulLinks: Array<{
+      title: string;
+      description: string;
+      href: string;
+    }>;
+    faqs: FaqItem[];
+    finalCta: {
+      eyebrow: string;
+      heading: string;
+      description: string;
+    };
+  };
 };
 
 export type FaqItem = {
@@ -172,7 +209,7 @@ export const clinicServicePages: ClinicServicePage[] = [
     relatedSlugs: [
       "checkups-physicals",
       "chronic-disease-management",
-      "womens-mens-childrens-health",
+      "womens-health-edmonton",
     ],
   },
   {
@@ -358,30 +395,241 @@ export const clinicServicePages: ClinicServicePage[] = [
     relatedSlugs: ["family-medicine", "chronic-disease-management"],
   },
   {
-    slug: "womens-mens-childrens-health",
-    path: "/services/womens-mens-childrens-health/",
-    title: "Women, Men And Children's Health Edmonton | Edmonton Doctors",
+    slug: "womens-health-edmonton",
+    path: "/services/womens-health-edmonton/",
+    title: "Women's Health Clinic Edmonton | North & NE Edmonton",
     description:
-      "Primary care for women, men, children, seniors, and families in Edmonton.",
-    eyebrow: "Women, Men And Children's Health",
-    heading: "Care For Women, Men, Children, And Families",
+      "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton. Pap tests, contraception, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+    eyebrow: "Women's Health Edmonton",
+    heading: "Women's Health Clinic in Edmonton",
     intro:
-      "Full-scope family medicine supports patients through changing needs at every stage of life.",
-    serviceType: "Family Health",
+      "Essential care for every stage of a woman's life. Edmonton Doctors supports patients in Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities with practical, respectful women's health care.",
+    serviceType: "Women's Health",
+    primaryCtaLabel: "Book Appointment",
+    heroImageShape: "square",
     patientNeeds: [
-      "Children's health visits",
-      "Women's health discussions",
-      "Men's health discussions",
-      "Senior and frailty care",
-      "Family care planning",
-      "Preventative health support",
+      "Pap tests and cervical screening",
+      "Contraception and birth control counselling",
+      "Prenatal counselling",
+      "Hormone-related concerns",
+      "Menopause and perimenopause support",
+      "Confidential STI testing",
     ],
     highlights: [
-      "Care for patients of all ages",
-      "Useful for entire-household registration",
-      "Supports prevention and long-term relationships",
+      "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton",
+      "Support for preventive visits, symptoms, and reproductive health questions",
+      "Beverly and Balwin clinic access for patients in surrounding communities",
     ],
     relatedSlugs: ["family-medicine", "checkups-physicals"],
+    richContent: {
+      serviceCards: [
+        {
+          title: "Pap Tests & Cervical Screening",
+          description:
+            "Routine cervical screening and Pap tests help detect abnormal cervical cell changes early, based on age, health history, and Alberta screening guidance.",
+        },
+        {
+          title: "Contraception & Birth Control",
+          description:
+            "Talk through birth control pills, patches, rings, injections, IUD referrals, implants, condoms, and emergency contraception in a confidential visit.",
+        },
+        {
+          title: "Prenatal Counselling",
+          description:
+            "Planning a pregnancy or newly pregnant? A clinic visit can help with early questions, medication review, risk review, lifestyle advice, and referrals.",
+        },
+        {
+          title: "Hormonal Care",
+          description:
+            "Get support for hormone-related symptoms that may affect mood, sleep, periods, energy, skin, weight, or overall well-being.",
+        },
+        {
+          title: "Menstrual Health",
+          description:
+            "Book a visit for heavy periods, painful periods, irregular cycles, missed periods, PMS, or concerns such as PCOS or endometriosis.",
+        },
+        {
+          title: "Menopause & Perimenopause",
+          description:
+            "Discuss hot flashes, night sweats, sleep changes, mood symptoms, vaginal dryness, cycle changes, and hormone or non-hormone options.",
+        },
+        {
+          title: "STI Testing & Sexual Health",
+          description:
+            "Confidential sexual health care for STI testing, symptom assessment, prevention advice, safer sex counselling, and treatment planning.",
+        },
+        {
+          title: "Breast Health",
+          description:
+            "Review breast concerns, screening questions, breast exams when appropriate, and referral support for imaging when needed.",
+        },
+        {
+          title: "Vaginal & Urinary Concerns",
+          description:
+            "Care for discharge, itching, irritation, infections, urinary symptoms, pelvic discomfort, and related concerns.",
+        },
+        {
+          title: "Fertility & Preconception",
+          description:
+            "Prepare for pregnancy with cycle tracking discussions, supplement review, health history review, and next-step referral planning.",
+        },
+        {
+          title: "Postpartum Support",
+          description:
+            "Follow-up after birth for recovery concerns, mood changes, contraception, breastfeeding-related questions, and ongoing care planning.",
+        },
+        {
+          title: "Preventive Checkups",
+          description:
+            "General health reviews, screening discussions, blood pressure checks, lifestyle counselling, and prevention-focused care.",
+        },
+      ],
+      detailSections: [
+        {
+          title: "Pap Tests & Cervical Screening",
+          description:
+            "In Alberta, women and people with a cervix aged 25 to 69 may be eligible for cervical cancer screening. Pap testing is generally recommended every 3 years for ages 25 to 49, while cervical screening testing is generally recommended every 5 years for ages 50 to 69. Your provider may recommend a different schedule based on your history or previous results.",
+        },
+        {
+          title: "Contraception",
+          description:
+            "Contraception should fit your health, comfort, lifestyle, cost considerations, privacy needs, and future pregnancy plans. Edmonton Doctors can discuss options such as pills, patches, rings, injections, IUD referrals, implants, condoms, and emergency contraception.",
+        },
+        {
+          title: "Hormone, Menstrual & Menopause Concerns",
+          description:
+            "Periods, hormones, perimenopause, and menopause can affect sleep, mood, bleeding patterns, energy, skin, weight, and vaginal health. A clinic visit can help review symptoms, discuss testing when appropriate, and plan practical next steps.",
+        },
+        {
+          title: "Pregnancy Planning & Postpartum Care",
+          description:
+            "Whether you are planning a pregnancy, newly pregnant, or recovering after birth, the clinic can help with medication review, risk discussion, supplements, lifestyle questions, referral support, mood concerns, and contraception planning.",
+        },
+        {
+          title: "Sexual, Vaginal, Urinary & Breast Health",
+          description:
+            "Patients can book confidential care for STI testing, sexual health questions, vaginal symptoms, urinary concerns, pelvic discomfort, breast concerns, and screening or imaging referral discussions when needed.",
+        },
+      ],
+      localSection: {
+        eyebrow: "Local Women's Health Care",
+        heading: "Women's Health Care In North Edmonton & Northeast Edmonton",
+        intro:
+          "Edmonton Doctors supports patients from Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities. Patients visit for Pap tests, contraception counselling, prenatal support, hormone concerns, menopause care, STI testing, and routine women's health checkups.",
+        communities: [
+          "Beverly",
+          "Balwin",
+          "Clareview",
+          "Londonderry",
+          "Castle Downs",
+          "Eaux Claires",
+          "Manning",
+          "Highlands",
+          "Hermitage",
+          "McConachie",
+          "Hollick-Kenyon",
+          "Surrounding NE Edmonton areas",
+        ],
+      },
+      visitSteps: [
+        {
+          title: "Choose A Doctor Or Clinic",
+          description:
+            "Use the registration page to choose a Beverly or Balwin doctor, or call the clinic that works best for your location and schedule.",
+        },
+        {
+          title: "Share The Main Concern",
+          description:
+            "Tell the clinic team whether you need screening, contraception advice, prenatal counselling, symptom review, STI testing, or another women's health visit.",
+        },
+        {
+          title: "Plan Next Steps",
+          description:
+            "Your provider can review your concern, discuss options, order testing when appropriate, and arrange follow-up or referrals when needed.",
+        },
+      ],
+      bookingReasons: [
+        {
+          title: "You are due for screening",
+          description:
+            "Book if you have questions about Pap tests, cervical screening, breast health, or preventive checkups.",
+        },
+        {
+          title: "You want contraception advice",
+          description:
+            "A visit can help compare birth control options and decide what may fit your health and preferences.",
+        },
+        {
+          title: "Your symptoms have changed",
+          description:
+            "New or worsening bleeding, pain, discharge, urinary symptoms, hot flashes, mood changes, or cycle changes are worth discussing.",
+        },
+      ],
+      helpfulLinks: [
+        {
+          title: "Book an Appointment",
+          description:
+            "Choose a Beverly or Balwin doctor and send a short request to the clinic team.",
+          href: "/register/",
+        },
+        {
+          title: "Family Doctor Directory",
+          description:
+            "Meet Edmonton family physicians at Beverly Medical Center and Balwin Medical Centre.",
+          href: "/family-doctor/",
+        },
+        {
+          title: "Walk-In Clinic Access",
+          description:
+            "Compare participating walk-in locations for non-emergency clinic concerns.",
+          href: "/walk-in/",
+        },
+        {
+          title: "Checkups & Physical Exams",
+          description:
+            "Learn about routine health reviews, screening discussions, and prevention-focused visits.",
+          href: "/services/checkups-physicals/",
+        },
+      ],
+      faqs: [
+        {
+          question: "Do I need a referral for women's health care in Edmonton?",
+          answer:
+            "Many women's health concerns can be discussed directly with a family physician or clinic provider. Some tests, imaging, or specialist care may still require a referral depending on the concern.",
+        },
+        {
+          question: "How often should I get a Pap test in Alberta?",
+          answer:
+            "In Alberta, Pap testing is generally recommended every 3 years for ages 25 to 49. For ages 50 to 69, cervical screening testing is generally recommended every 5 years. Your provider may recommend a different schedule based on your health history or previous results.",
+        },
+        {
+          question: "Can I get birth control from your clinic?",
+          answer:
+            "Yes. A clinic visit can include contraception counselling and discussion of options such as birth control pills, patches, rings, injections, IUD referrals, implants, condoms, and emergency contraception.",
+        },
+        {
+          question: "Can I book for irregular or painful periods?",
+          answer:
+            "Yes. Irregular, heavy, painful, or missed periods can have many causes. A visit can help review symptoms, medical history, possible testing, and treatment options.",
+        },
+        {
+          question: "Do you provide prenatal counselling?",
+          answer:
+            "Yes. Prenatal counselling can help with pregnancy planning, early pregnancy questions, medication review, health risks, supplements, lifestyle guidance, and referral planning.",
+        },
+        {
+          question: "Is STI testing confidential?",
+          answer:
+            "Yes. Sexual health visits and STI testing are handled respectfully and confidentially.",
+        },
+      ],
+      finalCta: {
+        eyebrow: "Book Women's Health Care",
+        heading: "Book Women's Health Care In Edmonton",
+        description:
+          "Use the registration page to choose a Beverly or Balwin doctor, or call the clinic if you need help choosing the right appointment path.",
+      },
+    },
   },
 ];
 
@@ -419,7 +667,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What services are available?",
     answer:
-      "Common services include family medicine, walk-in care, checkups, vaccinations and preventative care, chronic disease management, acute illness and injury care, mental health support, and care for women, men, children, and seniors.",
+      "Common services include family medicine, walk-in care, checkups, vaccinations and preventative care, chronic disease management, acute illness and injury care, mental health support, and women's health care.",
   },
   {
     question: "What should I do for an emergency?",

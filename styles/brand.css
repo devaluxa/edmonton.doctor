@@ -161,6 +161,7 @@ body {
   font-size: clamp(2.35rem, 5vw, 4.75rem);
   font-weight: 900;
   line-height: 1.02;
+  text-wrap: balance;
 }
 
 .medical-hero-intro {
@@ -182,6 +183,10 @@ body {
   border-radius: var(--brand-radius-card);
   background: var(--brand-color-paper);
   box-shadow: var(--brand-card-shadow);
+}
+
+.medical-hero-media-square {
+  aspect-ratio: 1;
 }
 
 .medical-hero-image {
@@ -273,6 +278,7 @@ body {
   font-size: clamp(2rem, 3vw, 3rem);
   font-weight: 900;
   line-height: 1.08;
+  text-wrap: balance;
 }
 
 .medical-section-intro {
@@ -466,7 +472,11 @@ a.medical-card:hover {
   }
 
   .medical-hero-title {
-    font-size: 2.35rem;
+    font-size: 2.18rem;
+  }
+
+  .medical-section-title {
+    font-size: 1.85rem;
   }
 
   .medical-hero-intro,

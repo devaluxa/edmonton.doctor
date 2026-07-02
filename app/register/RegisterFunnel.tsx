@@ -510,6 +510,7 @@ export default function RegisterFunnel({
                       isSelected ? styles.doctorCardSelected : ""
                     }`}
                     data-booking-href={getClinicForDoctor(doctor).bookingHref}
+                    data-doctor-slug={doctor.slug}
                     data-location={doctor.locationId}
                     data-selected={isSelected ? "true" : "false"}
                     data-testid="register-doctor-card"

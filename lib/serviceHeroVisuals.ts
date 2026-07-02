@@ -54,10 +54,10 @@ const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
     alt: medicalImages.doctorConsultation.alt,
     label: "Mental Health",
   },
-  "womens-mens-childrens-health": {
-    src: medicalImages.heroClinic.src,
-    alt: medicalImages.heroClinic.alt,
-    label: "Family Health",
+  "womens-health-edmonton": {
+    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_900,c_fill,ar_1:1,g_face/v1782859914/EdmontonDoctors/Dr._Olatayo_Idowu-Araade.jpg",
+    alt: medicalImages.drOlatayoPortrait.alt,
+    label: "Women's Health",
   },
 };
 

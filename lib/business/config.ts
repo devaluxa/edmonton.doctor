@@ -261,7 +261,7 @@ export const medicalImages = {
   },
   drKingsleyPortrait: {
     fileName: "lasing_kingely.jpg",
-    src: "https://res.cloudinary.com/dcb389szc/image/upload/v1782676373/EdmontonDoctors/lasing_kingely.jpg",
+    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_900,c_fill,g_face/v1782676373/EdmontonDoctors/lasing_kingely.jpg",
     alt: "Dr. Kingsley Lasing, Edmonton family physician",
   },
   drNosaPortrait: {
@@ -672,7 +672,7 @@ export const businessConfig = {
       eyebrow: "Service List",
       heading: "Family Medicine, Walk-In Care, And Preventative Health",
       description:
-        "Explore common primary care services including checkups, vaccinations, chronic disease management, acute care, mental health support, and care for women, men, and children.",
+        "Explore common primary care services including checkups, vaccinations, chronic disease management, acute care, mental health support, and women's health care.",
       itemCountLabel: "Services",
     },
     process: {

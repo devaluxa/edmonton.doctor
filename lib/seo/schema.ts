@@ -12,6 +12,7 @@ import {
   siteUrl,
   type BreadcrumbItem,
   type ClinicServicePage,
+  type FaqItem,
   type SeoConfig,
 } from "../sitePages";
 
@@ -171,11 +172,11 @@ export function buildMedicalServiceJsonLd(page: ClinicServicePage): JsonObject {
   };
 }
 
-export function buildFaqPageJsonLd(): JsonObject {
+export function buildFaqPageJsonLd(items: FaqItem[] = faqItems): JsonObject {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: faqItems.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
       acceptedAnswer: {

@@ -17,6 +17,7 @@ type PageHeroProps = {
   primaryAction: PageAction;
   secondaryAction?: PageAction;
   imagePosition?: string;
+  imageShape?: "wide" | "square";
 };
 
 type PageSectionProps = {
@@ -81,6 +82,7 @@ export function PageHero({
   primaryAction,
   secondaryAction,
   imagePosition = "center",
+  imageShape = "wide",
 }: PageHeroProps) {
   return (
     <section className="medical-hero">
@@ -104,7 +106,11 @@ export function PageHero({
           </div>
         </div>
 
-        <figure className="medical-hero-media">
+        <figure
+          className={`medical-hero-media ${
+            imageShape === "square" ? "medical-hero-media-square" : ""
+          }`}
+        >
           <img
             alt={visual.alt}
             className="medical-hero-image"

@@ -79,11 +79,11 @@ export const serviceSections: ServiceSection[] = [
       },
       {
         code: "F3",
-        name: "Women, Men, And Children's Health",
+        name: "Women's Health",
         summary:
-          "Primary care support for patients and families across life stages.",
-        href: "/services/womens-mens-childrens-health/",
-        tags: ["Children", "Adults", "Seniors"],
+          "Pap tests, contraception counselling, prenatal support, hormone concerns, STI testing, and menopause care.",
+        href: "/services/womens-health-edmonton/",
+        tags: ["Pap tests", "Contraception", "Menopause"],
       },
     ],
   },
