@@ -76,9 +76,13 @@ const trackingKeys = [
   "wbraid",
 ];
 
-const formsApiUrl = process.env.NEXT_PUBLIC_FORMS_API_URL?.trim() || "";
+const defaultFormsApiUrl = "https://api.onbooking.ca/v1/submissions";
+const defaultRegistrationFormId = "a8560735-5edd-443a-beba-990bd08cc8d3";
+const formsApiUrl =
+  process.env.NEXT_PUBLIC_FORMS_API_URL?.trim() || defaultFormsApiUrl;
 const registrationFormId =
-  process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID?.trim() || "";
+  process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID?.trim() ||
+  defaultRegistrationFormId;
 const turnstileSiteKey =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
 const turnstileScriptId = "cloudflare-turnstile-script";
@@ -387,8 +391,15 @@ export default function RegisterFunnel({
         body: JSON.stringify(payload),
       });
       const result = await response.json().catch(() => null);
+      const hasErrors =
+        Array.isArray(result?.errors) && result.errors.length > 0;
+      const submissionFailed =
+        !response.ok ||
+        result?.ok === false ||
+        result?.success === false ||
+        hasErrors;
 
-      if (!response.ok || result?.ok !== true) {
+      if (submissionFailed) {
         const message =
           result?.message ||
           result?.errors?.[0]?.message ||

@@ -25,6 +25,13 @@ Optional production form secrets:
 - `NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID`
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
 
+The `/register/` funnel has production-safe public defaults for OnBooking:
+
+- API URL: `https://api.onbooking.ca/v1/submissions`
+- Form ID: `a8560735-5edd-443a-beba-990bd08cc8d3`
+
+Only add the form secrets above if these values need to be overridden for a future environment or a new form.
+
 ## Create The Deploy Key
 
 Generate a dedicated key that is only used for GitHub Actions deploys:

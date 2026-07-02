@@ -45,6 +45,24 @@ const forbiddenVisibleCopy = [
   "device repair",
 ];
 
+const onBookingSubmissionsUrl = "https://api.onbooking.ca/v1/submissions";
+const onBookingRegistrationFormId = "a8560735-5edd-443a-beba-990bd08cc8d3";
+
+async function fillRegisterFunnel(page: import("@playwright/test").Page) {
+  await page.locator('input[name="name"]').fill("Playwright Test Patient");
+  await page.locator('input[name="phone"]').fill("(780) 555-0199");
+  await page
+    .locator('input[name="email"]')
+    .fill("edmonton.doctor.test+playwright@example.com");
+  await page
+    .locator('input[name="availability"]')
+    .fill("Automated Playwright test - no action needed");
+  await page
+    .locator('textarea[name="message"]')
+    .fill("TEST LEAD: automated mocked submission from Playwright.");
+  await page.locator('input[name="consent"]').check();
+}
+
 test.describe("inner medical page system", () => {
   for (const path of innerPages) {
     test(`${path} uses shared medical layout without legacy copy`, async ({
@@ -364,6 +382,124 @@ test.describe("inner medical page system", () => {
     await expect(page.locator('input[name="bookingHref"]')).toHaveValue(
       "https://qstb8.healthquest.ca:3000/onlinebooking",
     );
+  });
+
+  test("register funnel submits Balwin doctor payload to OnBooking and redirects", async ({
+    page,
+  }) => {
+    let payload: Record<string, any> | null = null;
+
+    await page.route(onBookingSubmissionsUrl, async (route) => {
+      payload = route.request().postDataJSON();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ submissionId: "playwright-balwin-test" }),
+      });
+    });
+
+    await page.goto("/register/");
+    await page
+      .locator('[data-testid="register-doctor-card"]')
+      .filter({ hasText: "Dr. Asim Bilal" })
+      .click();
+    await fillRegisterFunnel(page);
+
+    await Promise.all([
+      page.waitForURL("**/thank-you/"),
+      page.getByRole("button", { name: "Send Request" }).click(),
+    ]);
+
+    expect(payload).toMatchObject({
+      siteId: "edmontondoctors",
+      formId: onBookingRegistrationFormId,
+      name: "Playwright Test Patient",
+      phone: "(780) 555-0199",
+      email: "edmonton.doctor.test+playwright@example.com",
+      preferredDoctor: "Dr. Asim Bilal",
+      preferredDoctorFullName: "Dr. Asim Bilal, MD",
+      preferredDoctorSlug: "dr-asim-bilal",
+      preferredLocation: "balwin-medical-centre",
+      preferredLocationName: "Balwin Medical Centre",
+      bookingHref: "https://qstb8.healthquest.ca:3000/onlinebooking",
+    });
+    expect(payload?.fields).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: "preferred_doctor",
+          value: "Dr. Asim Bilal",
+        }),
+        expect.objectContaining({
+          id: "preferred_location",
+          value: "Balwin Medical Centre",
+        }),
+        expect.objectContaining({
+          id: "booking_href",
+          value: "https://qstb8.healthquest.ca:3000/onlinebooking",
+        }),
+      ]),
+    );
+  });
+
+  test("register funnel submits Beverly doctor payload to OnBooking and redirects", async ({
+    page,
+  }) => {
+    let payload: Record<string, any> | null = null;
+
+    await page.route(onBookingSubmissionsUrl, async (route) => {
+      payload = route.request().postDataJSON();
+      await route.fulfill({
+        status: 201,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, submissionId: "playwright-beverly-test" }),
+      });
+    });
+
+    await page.goto("/register/");
+    await page
+      .locator('[data-testid="register-doctor-card"]')
+      .filter({ hasText: "Dr. Nosa" })
+      .click();
+    await fillRegisterFunnel(page);
+
+    await Promise.all([
+      page.waitForURL("**/thank-you/"),
+      page.getByRole("button", { name: "Send Request" }).click(),
+    ]);
+
+    expect(payload).toMatchObject({
+      siteId: "edmontondoctors",
+      formId: onBookingRegistrationFormId,
+      preferredDoctor: "Dr. Nosa",
+      preferredDoctorSlug: "dr-nosa",
+      preferredLocation: "beverly-medical-center",
+      preferredLocationName: "Beverly Medical Center & Walk-In",
+      bookingHref: "https://cloud.healthquest.ca:45254/onlinebooking",
+    });
+  });
+
+  test("register funnel shows readable error when OnBooking rejects the request", async ({
+    page,
+  }) => {
+    await page.route(onBookingSubmissionsUrl, async (route) => {
+      await route.fulfill({
+        status: 422,
+        contentType: "application/json",
+        body: JSON.stringify({
+          ok: false,
+          message: "Test rejection from OnBooking.",
+        }),
+      });
+    });
+
+    await page.goto("/register/");
+    await fillRegisterFunnel(page);
+    await page.getByRole("button", { name: "Send Request" }).click();
+
+    await expect(page.getByRole("status")).toContainText(
+      "Test rejection from OnBooking.",
+    );
+    await expect(page).toHaveURL(/\/register\/$/);
   });
 
   test("legacy long URLs render moved pages pointing to short routes", async ({
