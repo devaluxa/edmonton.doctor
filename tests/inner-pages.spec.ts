@@ -282,7 +282,7 @@ test.describe("inner medical page system", () => {
     const portraitSources = await page
       .locator('[data-testid="register-doctor-image"]')
       .evaluateAll((images) =>
-        images.map((image) => (image as HTMLImageElement).currentSrc),
+        images.map((image) => image.getAttribute("src") || ""),
       );
     expect(new Set(portraitSources).size).toBe(6);
 

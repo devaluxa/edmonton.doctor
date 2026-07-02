@@ -55,8 +55,8 @@ const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
     label: "Mental Health",
   },
   "womens-health-edmonton": {
-    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_900,c_fill,ar_1:1,g_face/v1782859914/EdmontonDoctors/Dr._Olatayo_Idowu-Araade.jpg",
-    alt: medicalImages.drOlatayoPortrait.alt,
+    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_1000,c_fill,ar_1:1/v1782974897/EdmontonDoctors/womens_health_1.png",
+    alt: "Women's health care at Edmonton Doctors",
     label: "Women's Health",
   },
 };
