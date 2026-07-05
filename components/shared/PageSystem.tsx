@@ -43,6 +43,13 @@ export type InfoCard = {
   noWrapTitle?: boolean;
 };
 
+export type ChecklistItem = ReactNode;
+
+export type ComparisonGroup = {
+  title: string;
+  items: string[];
+};
+
 type InfoCardGridProps = {
   cards: InfoCard[];
   columns?: "two" | "three" | "four";
@@ -56,6 +63,15 @@ export type StepCard = {
 
 type StepCardsProps = {
   steps: StepCard[];
+};
+
+type ChecklistGridProps = {
+  items: ChecklistItem[];
+  columns?: "two" | "three";
+};
+
+type ComparisonGridProps = {
+  groups: ComparisonGroup[];
 };
 
 type CtaBandProps = {
@@ -226,6 +242,41 @@ export function StepCards({ steps }: StepCardsProps) {
             <h3 className="medical-card-title">{step.title}</h3>
             <p className="medical-card-description">{step.description}</p>
           </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export function ChecklistGrid({
+  items,
+  columns = "two",
+}: ChecklistGridProps) {
+  return (
+    <ul
+      className={`medical-checklist-grid ${
+        columns === "three" ? "medical-checklist-grid-three" : ""
+      }`}
+    >
+      {items.map((item, index) => (
+        <li className="medical-checklist-item" key={`${index}-${String(item)}`}>
+          <span aria-hidden="true" className="medical-checklist-icon">
+            ✓
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export function ComparisonGrid({ groups }: ComparisonGridProps) {
+  return (
+    <div className="medical-comparison-grid">
+      {groups.map((group) => (
+        <article className="medical-card" key={group.title}>
+          <h3 className="medical-card-title">{group.title}</h3>
+          <ChecklistGrid items={group.items} columns="two" />
         </article>
       ))}
     </div>

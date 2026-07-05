@@ -204,7 +204,7 @@ export type BusinessConfig = {
 
 const configuredBusinessName = "Edmonton Doctors";
 const configuredMarket =
-  "Family medicine, walk-in care, and new patient registration in Edmonton";
+  "Family medicine, walk-in clinic care, and new patient registration in Edmonton";
 const registrationHref = "/register/";
 
 export const businessTheme: BrandTheme = {
@@ -263,11 +263,6 @@ export const medicalImages = {
     fileName: "lasing_kingely.jpg",
     src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_900,c_fill,g_face/v1782676373/EdmontonDoctors/lasing_kingely.jpg",
     alt: "Dr. Kingsley Lasing, Edmonton family physician",
-  },
-  drNosaPortrait: {
-    fileName: "Dr_Nosa.jpg",
-    src: "https://res.cloudinary.com/dcb389szc/image/upload/v1782859914/EdmontonDoctors/Dr_Nosa.jpg",
-    alt: "Dr. Nosa, Edmonton family physician",
   },
   drAsimPortrait: {
     fileName: "Dr_Asim_Bilal_-_MD.jpg",
@@ -404,24 +399,6 @@ const doctors: DoctorProfile[] = [
     status: "accepting",
     statusLabel: "Accepting New Patients",
     image: medicalImages.drKingsleyPortrait,
-  },
-  {
-    slug: "dr-nosa",
-    name: "Dr. Nosa",
-    fullName: "Dr. Nosakhare Lawrence Ologbosere",
-    title: "Full-Scope Family Medicine",
-    clinicName: "Beverly Medical Doctors",
-    locationId: "beverly-medical-center",
-    intro:
-      "A compassionate family physician serving Beverly, East Edmonton, North Edmonton, and Sherwood Park with warm, clear, patient-centered care.",
-    biography: [
-      "Dr. Nosakhare Lawrence Ologbosere, widely known as Dr. Nosa, provides full-scope family medicine with a focus on attentive listening, clear communication, and practical care for patients and families.",
-    ],
-    focusAreas: ["Full-scope family medicine", "Walk-in care", "Family practice"],
-    languages: ["English"],
-    status: "walk-in-family-practice",
-    statusLabel: "Accepting Walk-In And Family Practice Patients",
-    image: medicalImages.drNosaPortrait,
   },
   {
     slug: "dr-asim-bilal",
@@ -670,9 +647,9 @@ export const businessConfig = {
     },
     services: {
       eyebrow: "Service List",
-      heading: "Family Medicine, Walk-In Care, And Preventative Health",
+      heading: "Family Medicine, Walk-In Clinic Care, And Preventive Health",
       description:
-        "Explore common primary care services including checkups, vaccinations, chronic disease management, acute care, mental health support, and women's health care.",
+        "Explore common primary care services including checkups, prescription renewals, vaccinations, chronic disease management, acute care, mental health support, and women's health care.",
       itemCountLabel: "Services",
     },
     process: {
@@ -727,14 +704,14 @@ export const businessConfig = {
       contactHeading: "Locations",
       socialHeading: "Useful Links",
       servicesIntro:
-        "Family medicine, walk-in clinic care, patient registration, preventative care, and chronic disease support in Edmonton.",
+        "Family medicine, walk-in clinic care, patient registration, preventive care, and chronic disease support in Edmonton.",
       serviceLinks: [
         {
           label: "Edmonton Family Doctors Accepting Patients",
           href: "/family-doctor/",
         },
         { label: "Patient Registration Form", href: registrationHref },
-        { label: "Walk-In Clinic Edmonton", href: "/walk-in/" },
+        { label: "Walk-In Clinic", href: "/walk-in/" },
       ],
       copyrightSuffix: "All rights reserved.",
     },

@@ -8,7 +8,7 @@ const services = [
     title: "Family Medicine",
     description:
       "Ongoing primary care for children, adults, seniors, and households registering with a family doctor.",
-    href: "/services/family-medicine/",
+    href: "/services/family-medicine-edmonton/",
   },
   {
     icon: HeartPulse,
@@ -19,7 +19,7 @@ const services = [
   },
   {
     icon: ShieldCheck,
-    title: "Preventative Care",
+    title: "Preventive Care",
     description:
       "Checkups, vaccinations, screening discussions, and health planning focused on prevention.",
     href: "/services/vaccinations-preventative-care/",

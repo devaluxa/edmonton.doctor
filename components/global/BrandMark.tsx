@@ -35,7 +35,7 @@ export default function BrandMark({ tone = "light" }: BrandMarkProps) {
             isLight ? "text-white/70" : "text-slate-500"
           }`}
         >
-          Family & Walk-In Care
+          Family & Walk-In Clinic
         </span>
       </span>
     </span>

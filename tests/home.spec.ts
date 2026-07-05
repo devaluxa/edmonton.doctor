@@ -819,8 +819,10 @@ test.describe("homepage review", () => {
     expect(hrefs).toContain("/register/");
     expect(hrefs).toContain("/family-doctor/");
     expect(hrefs).toContain("/walk-in/");
+    expect(hrefs).toContain("/services/prescription-renewals/");
     expect(hrefs).not.toContain("/family-doctors-accepting-new-patients-edmonton/");
     expect(hrefs).not.toContain("/walk-in-clinic-edmonton/");
+    expect(hrefs).not.toContain("/services/walk-in-care/");
     expect(hrefs).not.toContain("/patient-registration/");
 
     for (const href of hrefs) {

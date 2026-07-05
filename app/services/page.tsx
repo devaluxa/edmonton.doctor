@@ -14,10 +14,10 @@ import {
 } from "../../lib/seo/schema";
 import { buildPageMetadata } from "../../lib/seo/metadata";
 import {
-  clinicServicePages,
   corePages,
   primaryCtaLabel,
   secondaryCtaLabel,
+  serviceDirectoryPages,
   serviceRequestLinks,
 } from "../../lib/sitePages";
 import { servicesIndexVisual } from "../../lib/serviceHeroVisuals";
@@ -60,10 +60,10 @@ export default function ServicesPage() {
         <SectionHeader
           eyebrow="Clinic Services"
           heading="Choose A Care Page"
-          intro="Browse family medicine, walk-in care, preventative health, acute care, and follow-up services in one clean service directory."
+          intro="Browse family medicine, walk-in clinic care, preventive health, acute care, and follow-up services in one clean service directory."
         />
         <InfoCardGrid
-          cards={clinicServicePages.map((servicePage) => ({
+          cards={serviceDirectoryPages.map((servicePage) => ({
             title: servicePage.heading,
             description: servicePage.description,
             href: servicePage.path,

@@ -59,14 +59,14 @@ export const featuredServiceItems: FeaturedServiceItem[] = [
 export const serviceSections: ServiceSection[] = [
   {
     title: "Family Medicine",
-    slug: "family-medicine",
+    slug: "family-medicine-edmonton",
     items: [
       {
         code: "F1",
         name: "Ongoing Family Doctor Care",
         summary:
           "Long-term primary care for children, adults, seniors, and families.",
-        href: "/services/family-medicine/",
+        href: "/services/family-medicine-edmonton/",
         tags: ["Family doctor", "Long-term care", "Prevention"],
       },
       {
@@ -77,23 +77,15 @@ export const serviceSections: ServiceSection[] = [
         href: "/services/new-patient-registration/",
         tags: ["Registration", "No waitlist", "Households"],
       },
-      {
-        code: "F3",
-        name: "Women's Health",
-        summary:
-          "Pap tests, contraception counselling, prenatal support, hormone concerns, STI testing, and menopause care.",
-        href: "/services/womens-health-edmonton/",
-        tags: ["Pap tests", "Contraception", "Menopause"],
-      },
     ],
   },
   {
-    title: "Clinic Visits And Preventative Care",
+    title: "Clinic Visits And Preventive Care",
     slug: "clinic-visits-prevention",
     items: [
       {
         code: "C1",
-        name: "General Checkups And Physical Exams",
+        name: "Checkups & Physical Exams",
         summary:
           "Routine visits for health review, screening discussions, and risk checks.",
         href: "/services/checkups-physicals/",
@@ -101,19 +93,35 @@ export const serviceSections: ServiceSection[] = [
       },
       {
         code: "C2",
-        name: "Vaccinations And Preventative Care",
+        name: "Vaccinations & Preventive Care",
         summary:
-          "Preventative health support, vaccination discussions, and follow-up planning.",
+          "Preventive health support, vaccination discussions, and follow-up planning.",
         href: "/services/vaccinations-preventative-care/",
         tags: ["Vaccines", "Prevention", "Planning"],
       },
       {
         code: "C3",
-        name: "Walk-In Care",
+        name: "Walk-In Clinic",
         summary:
           "Clinic access for timely non-emergency concerns at participating locations.",
-        href: "/services/walk-in-care/",
+        href: "/walk-in/",
         tags: ["Walk-ins", "Clinic visits", "Availability"],
+      },
+      {
+        code: "C4",
+        name: "Acute Illness & Injury",
+        summary:
+          "Assessment and next steps for non-emergency illness and minor injury concerns.",
+        href: "/services/acute-illness-injury-treatment/",
+        tags: ["Illness", "Injury", "Non-emergency"],
+      },
+      {
+        code: "C5",
+        name: "Prescription Renewals",
+        summary:
+          "Medication renewal discussions, follow-up planning, and prescription review visits.",
+        href: "/services/prescription-renewals/",
+        tags: ["Medications", "Renewals", "Follow-up"],
       },
     ],
   },
@@ -131,19 +139,57 @@ export const serviceSections: ServiceSection[] = [
       },
       {
         code: "O2",
-        name: "Acute Illness And Injury Treatment",
-        summary:
-          "Assessment and next steps for non-emergency illness and minor injury concerns.",
-        href: "/services/acute-illness-injury-treatment/",
-        tags: ["Illness", "Injury", "Non-emergency"],
-      },
-      {
-        code: "O3",
         name: "Mental Health Support",
         summary:
           "Family medicine support for mood, stress, anxiety, and follow-up planning.",
         href: "/services/mental-health-support/",
         tags: ["Mental health", "Planning", "Support"],
+      },
+    ],
+  },
+  {
+    title: "Women's Health",
+    slug: "womens-health",
+    items: [
+      {
+        code: "W1",
+        name: "Women's Health",
+        summary:
+          "Pap tests, contraception counselling, prenatal support, hormone concerns, STI testing, and menopause care.",
+        href: "/services/womens-health-edmonton/",
+        tags: ["Pap tests", "Contraception", "Menopause"],
+      },
+      {
+        code: "W2",
+        name: "Pap Tests & Cervical Screening",
+        summary:
+          "Preventive cervical screening and Pap test discussions for eligible patients.",
+        href: "/services/pap-tests-cervical-screening/",
+        tags: ["Pap tests", "Screening", "Prevention"],
+      },
+      {
+        code: "W3",
+        name: "Birth Control & Contraception",
+        summary:
+          "Confidential contraception counselling and birth control option discussions.",
+        href: "/services/birth-control-contraception/",
+        tags: ["Birth control", "Contraception", "Counselling"],
+      },
+      {
+        code: "W4",
+        name: "Prenatal Counselling",
+        summary:
+          "Pregnancy planning, early pregnancy questions, medication review, and referral guidance.",
+        href: "/services/prenatal-counselling/",
+        tags: ["Prenatal", "Pregnancy", "Planning"],
+      },
+      {
+        code: "W5",
+        name: "STI Testing",
+        summary:
+          "Confidential sexual health visits for STI testing questions, symptoms, and follow-up planning.",
+        href: "/services/sti-testing/",
+        tags: ["STI testing", "Sexual health", "Confidential"],
       },
     ],
   },

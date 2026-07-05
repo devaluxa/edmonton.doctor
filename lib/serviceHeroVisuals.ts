@@ -14,15 +14,10 @@ const defaultServiceVisual: ServiceHeroVisual = {
 };
 
 const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
-  "family-medicine": {
+  "family-medicine-edmonton": {
     src: medicalImages.doctorConsultation.src,
-    alt: medicalImages.doctorConsultation.alt,
+    alt: "Family doctor speaking with a patient in a calm consultation room in Edmonton",
     label: "Family Medicine",
-  },
-  "walk-in-care": {
-    src: medicalImages.walkInCareConsultation.src,
-    alt: medicalImages.walkInCareConsultation.alt,
-    label: "Walk-In Care",
   },
   "new-patient-registration": {
     src: medicalImages.heroClinic.src,
@@ -37,7 +32,7 @@ const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
   "vaccinations-preventative-care": {
     src: medicalImages.clinicReception.src,
     alt: medicalImages.clinicReception.alt,
-    label: "Preventative Care",
+    label: "Preventive Care",
   },
   "chronic-disease-management": {
     src: medicalImages.doctorConsultation.src,
@@ -49,6 +44,11 @@ const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
     alt: medicalImages.clinicReception.alt,
     label: "Acute Care",
   },
+  "prescription-renewals": {
+    src: medicalImages.walkInCareConsultation.src,
+    alt: medicalImages.walkInCareConsultation.alt,
+    label: "Prescription Renewals",
+  },
   "mental-health-support": {
     src: medicalImages.doctorConsultation.src,
     alt: medicalImages.doctorConsultation.alt,
@@ -58,6 +58,26 @@ const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
     src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_1000,c_fill,ar_1:1/v1782974897/EdmontonDoctors/womens_health_1.png",
     alt: "Women's health care at Edmonton Doctors",
     label: "Women's Health",
+  },
+  "pap-tests-cervical-screening": {
+    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_1000,c_fill,ar_1:1/v1782974897/EdmontonDoctors/womens_health_1.png",
+    alt: "Women's health care at Edmonton Doctors",
+    label: "Cervical Screening",
+  },
+  "birth-control-contraception": {
+    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_1000,c_fill,ar_1:1/v1782974897/EdmontonDoctors/womens_health_1.png",
+    alt: "Women's health consultation at Edmonton Doctors",
+    label: "Birth Control",
+  },
+  "prenatal-counselling": {
+    src: medicalImages.doctorConsultation.src,
+    alt: medicalImages.doctorConsultation.alt,
+    label: "Prenatal Counselling",
+  },
+  "sti-testing": {
+    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_1000,c_fill,ar_1:1/v1782974897/EdmontonDoctors/womens_health_1.png",
+    alt: "Confidential women's health care at Edmonton Doctors",
+    label: "STI Testing",
   },
 };
 
@@ -70,7 +90,7 @@ export const servicesIndexVisual: ServiceHeroVisual = {
 export const walkInPageVisual: ServiceHeroVisual = {
   src: medicalImages.walkInCareConsultation.src,
   alt: medicalImages.walkInCareConsultation.alt,
-  label: "Walk-In Care",
+  label: "Walk-In Clinic",
 };
 
 export const registrationPageVisual: ServiceHeroVisual = {

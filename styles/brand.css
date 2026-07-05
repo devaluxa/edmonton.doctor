@@ -371,6 +371,48 @@ a.medical-card:hover {
   font-weight: 900;
 }
 
+.medical-checklist-grid {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.medical-checklist-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: flex-start;
+  color: #334155;
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.medical-checklist-icon {
+  display: inline-flex;
+  width: 1.35rem;
+  height: 1.35rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--brand-color-primary-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.medical-comparison-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.medical-comparison-grid .medical-checklist-grid {
+  margin-top: 1rem;
+}
+
 .medical-cta-band {
   display: grid;
   gap: 1.5rem;
@@ -504,6 +546,10 @@ a.medical-card:hover {
   .medical-step-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
+
+  .medical-checklist-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (min-width: 1024px) {
@@ -526,6 +572,14 @@ a.medical-card:hover {
 
   .medical-card-grid-four {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .medical-checklist-grid-three {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .medical-comparison-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .medical-cta-band {

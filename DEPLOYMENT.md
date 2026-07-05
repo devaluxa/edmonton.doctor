@@ -85,6 +85,30 @@ ls -la /home/edmonton/htdocs/edmonton.doctor
 
 Pull requests only run the build and do not deploy.
 
+## Production Redirects
+
+The static export includes a noindex moved page for `/services/walk-in-care/`, but the production host should serve a real permanent redirect for SEO.
+
+Add these exact-match redirects in the CloudPanel NGINX vhost for `edmonton.doctor`:
+
+```nginx
+location = /services/walk-in-care {
+  return 301 /walk-in/;
+}
+
+location = /services/walk-in-care/ {
+  return 301 /walk-in/;
+}
+
+location = /services/family-medicine {
+  return 301 /services/family-medicine-edmonton/;
+}
+
+location = /services/family-medicine/ {
+  return 301 /services/family-medicine-edmonton/;
+}
+```
+
 ## Cloudflare And SSL
 
 Once DNS points to `148.116.84.122`, enable SSL in CloudPanel for `edmonton.doctor`.

@@ -547,7 +547,7 @@ export default function RegistrationLeadForm({
             <option value="Chronic care follow-up">
               Chronic care follow-up
             </option>
-            <option value="Preventative care">Preventative care</option>
+            <option value="Preventive care">Preventive care</option>
             <option value="Other general question">Other general question</option>
           </select>
         </label>

@@ -2,9 +2,13 @@ import { expect, test } from "@playwright/test";
 
 const innerPages = [
   "/services/",
-  "/services/walk-in-care/",
-  "/services/family-medicine/",
+  "/services/family-medicine-edmonton/",
   "/services/womens-health-edmonton/",
+  "/services/prescription-renewals/",
+  "/services/pap-tests-cervical-screening/",
+  "/services/birth-control-contraception/",
+  "/services/prenatal-counselling/",
+  "/services/sti-testing/",
   "/family-doctor/",
   "/locations/",
   "/faq/",
@@ -23,6 +27,14 @@ const legacyMovedPages = [
   {
     path: "/walk-in-clinic-edmonton/",
     target: "/walk-in/",
+  },
+  {
+    path: "/services/walk-in-care/",
+    target: "/walk-in/",
+  },
+  {
+    path: "/services/family-medicine/",
+    target: "/services/family-medicine-edmonton/",
   },
   {
     path: "/patient-registration/",
@@ -149,7 +161,6 @@ test.describe("inner medical page system", () => {
 
     for (const doctor of [
       "Dr. Kingsley",
-      "Dr. Nosa",
       "Dr. Asim Bilal",
       "Dr. Olatayo Idowu-Araade",
       "Dr. Sameer Sardesai",
@@ -158,9 +169,10 @@ test.describe("inner medical page system", () => {
       await expect(page.getByRole("heading", { name: doctor })).toBeVisible();
     }
 
-    await expect(page.locator('[data-testid="doctor-card"]')).toHaveCount(6);
-    await expect(page.locator('[data-testid="doctor-media"]')).toHaveCount(6);
-    await expect(page.locator('[data-testid="doctor-image"]')).toHaveCount(6);
+    await expect(page.locator('[data-testid="doctor-card"]')).toHaveCount(5);
+    await expect(page.locator('[data-testid="doctor-media"]')).toHaveCount(5);
+    await expect(page.locator('[data-testid="doctor-image"]')).toHaveCount(5);
+    await expect(page.getByText("Dr. Nosa")).toHaveCount(0);
     await expect(page.locator('[data-testid="doctor-placeholder"]')).toHaveCount(0);
     await expect(page.locator('[data-testid="doctor-list"]')).toBeVisible();
 
@@ -234,12 +246,12 @@ test.describe("inner medical page system", () => {
     expect(layout[0].imageLeft).toBeLessThan(layout[0].cardLeft + 45);
     expect(layout[1].imageRight).toBeGreaterThan(layout[1].cardRight - 45);
 
-    await expect(page.getByRole("link", { name: "Book Appointment" })).toHaveCount(6);
+    await expect(page.getByRole("link", { name: "Book Appointment" })).toHaveCount(5);
     await expect(
       page
         .locator('[data-testid="doctor-card"][data-location="beverly-medical-center"]')
         .locator('a[href="https://cloud.healthquest.ca:45254/onlinebooking"]'),
-    ).toHaveCount(2);
+    ).toHaveCount(1);
     await expect(
       page
         .locator('[data-testid="doctor-card"][data-location="balwin-medical-centre"]')
@@ -276,15 +288,16 @@ test.describe("inner medical page system", () => {
     await expect(page.getByText("Minimal Lead Form Only")).toHaveCount(0);
 
     const doctorCards = page.locator('[data-testid="register-doctor-card"]');
-    await expect(doctorCards).toHaveCount(6);
-    await expect(page.locator('[data-testid="register-doctor-image"]')).toHaveCount(6);
+    await expect(doctorCards).toHaveCount(5);
+    await expect(page.locator('[data-testid="register-doctor-image"]')).toHaveCount(5);
+    await expect(page.getByText("Dr. Nosa")).toHaveCount(0);
 
     const portraitSources = await page
       .locator('[data-testid="register-doctor-image"]')
       .evaluateAll((images) =>
         images.map((image) => image.getAttribute("src") || ""),
       );
-    expect(new Set(portraitSources).size).toBe(6);
+    expect(new Set(portraitSources).size).toBe(5);
 
     await page
       .locator(
@@ -308,10 +321,10 @@ test.describe("inner medical page system", () => {
     );
 
     await page
-      .locator('[data-testid="register-doctor-card"][data-doctor-slug="dr-nosa"]')
+      .locator('[data-testid="register-doctor-card"][data-doctor-slug="dr-kingsley"]')
       .click();
     await expect(page.locator('input[name="preferredDoctor"]')).toHaveValue(
-      "Dr. Nosa",
+      "Dr. Kingsley",
     );
     await expect(page.locator('input[name="preferredLocation"]')).toHaveValue(
       "beverly-medical-center",
@@ -395,6 +408,68 @@ test.describe("inner medical page system", () => {
     );
   });
 
+  test("family medicine page explains ongoing primary care instead of registration only", async ({
+    page,
+  }) => {
+    await page.goto("/services/family-medicine-edmonton/", {
+      waitUntil: "domcontentloaded",
+    });
+
+    await expect(
+      page.getByRole("heading", {
+        level: 1,
+        name: "Family Medicine in Edmonton",
+      }),
+    ).toBeVisible();
+    await expect(page.locator("h1")).toHaveCount(1);
+
+    for (const heading of [
+      "Ongoing Family Medicine Support",
+      "What Family Medicine Can Help With",
+      "Family Medicine in North Edmonton and Northeast Edmonton",
+      "Why Patients Choose Edmonton Doctors",
+      "Family Medicine vs Walk-In Clinic Care",
+      "Related Services",
+      "Need Help With Family Medicine?",
+      "Frequently Asked Questions",
+    ]) {
+      await expect(
+        page.getByRole("heading", { name: heading }).first(),
+      ).toBeVisible();
+    }
+
+    for (const text of [
+      "Medication Reviews",
+      "Health Screening Guidance",
+      "Children's health concerns",
+      "North Edmonton family doctor",
+      "Northeast Edmonton family medicine",
+      "Availability may vary",
+      "call 911",
+    ]) {
+      await expect(page.getByText(text, { exact: false }).first()).toBeVisible();
+    }
+
+    await expect(page.getByText("Patient Needs", { exact: true })).toHaveCount(0);
+    await expect(page.locator('main a[href="/walk-in/"]').first()).toBeVisible();
+    await expect(
+      page.locator('main a[href="/services/checkups-physicals/"]').first(),
+    ).toBeVisible();
+
+    const faqJsonLdExists = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluateAll((scripts) =>
+        scripts.some((script) => {
+          try {
+            return JSON.parse(script.textContent || "{}")["@type"] === "FAQPage";
+          } catch {
+            return false;
+          }
+        }),
+      );
+    expect(faqJsonLdExists).toBe(true);
+  });
+
   test("women's health service page uses focused local copy and square hero image", async ({
     page,
   }) => {
@@ -413,6 +488,8 @@ test.describe("inner medical page system", () => {
       "Essential care for every stage of a woman's life.",
       "Pap Tests & Cervical Screening",
       "Contraception & Birth Control",
+      "Prenatal Counselling",
+      "STI Testing",
       "Menopause & Perimenopause",
       "Women's Health Care In North Edmonton & Northeast Edmonton",
       "Women's Health FAQ",
@@ -436,6 +513,15 @@ test.describe("inner medical page system", () => {
         .getByRole("link", { name: "Book Appointment" })
         .first(),
     ).toHaveAttribute("href", "/register/");
+
+    for (const href of [
+      "/services/pap-tests-cervical-screening/",
+      "/services/birth-control-contraception/",
+      "/services/prenatal-counselling/",
+      "/services/sti-testing/",
+    ]) {
+      await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
+    }
 
     const hero = await page
       .locator(".medical-hero-media")
@@ -649,7 +735,7 @@ test.describe("inner medical page system", () => {
 
     await page.goto("/register/", { waitUntil: "domcontentloaded" });
     await page
-      .locator('[data-testid="register-doctor-card"][data-doctor-slug="dr-nosa"]')
+      .locator('[data-testid="register-doctor-card"][data-doctor-slug="dr-kingsley"]')
       .click();
     await fillRegisterFunnel(page);
 
@@ -661,8 +747,8 @@ test.describe("inner medical page system", () => {
     expect(payload).toMatchObject({
       siteId: "edmontondoctors",
       formId: onBookingRegistrationFormId,
-      preferredDoctor: "Dr. Nosa",
-      preferredDoctorSlug: "dr-nosa",
+      preferredDoctor: "Dr. Kingsley",
+      preferredDoctorSlug: "dr-kingsley",
       preferredLocation: "beverly-medical-center",
       preferredLocationName: "Beverly Medical Center & Walk-In",
       bookingHref: "https://cloud.healthquest.ca:45254/onlinebooking",

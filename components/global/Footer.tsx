@@ -4,7 +4,7 @@ import {
   clinicLocationList,
   homeContent,
 } from "../../lib/business/config";
-import { clinicServicePages } from "../../lib/sitePages";
+import { serviceNavigationPages } from "../../lib/sitePages";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -68,7 +68,7 @@ export default function Footer() {
                 {link.label}
               </a>
             ))}
-            {clinicServicePages.slice(0, 3).map((link) => (
+            {serviceNavigationPages.slice(0, 3).map((link) => (
               <a
                 className="inline-flex min-h-10 items-center justify-center rounded-md border border-[var(--brand-color-accent)]/35 bg-[var(--brand-color-accent)]/10 px-3 py-2 text-xs font-extrabold text-[var(--brand-color-accent)] transition hover:-translate-y-0.5 hover:bg-[var(--brand-color-accent)] hover:text-[var(--brand-color-ink)] sm:px-4 sm:text-sm"
                 href={link.path}

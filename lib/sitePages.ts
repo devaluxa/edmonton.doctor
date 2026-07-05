@@ -34,33 +34,81 @@ export type ClinicServicePage = SeoConfig & {
   primaryCtaLabel?: string;
   heroImageShape?: "wide" | "square";
   richContent?: {
+    serviceSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+    };
     serviceCards: Array<{
       title: string;
       description: string;
     }>;
-    detailSections: Array<{
+    detailSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+    };
+    detailSections?: Array<{
       title: string;
       description: string;
     }>;
-    localSection: {
+    listSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+      items: string[];
+      columns?: "two" | "three";
+    };
+    localSection?: {
       eyebrow: string;
       heading: string;
       intro: string;
       communities: string[];
     };
-    visitSteps: Array<{
+    visitSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+    };
+    visitSteps?: Array<{
       title: string;
       description: string;
     }>;
-    bookingReasons: Array<{
+    bookingSection?: {
+      eyebrow: string;
+      heading: string;
+      intro?: string;
+    };
+    bookingReasons?: Array<{
       title: string;
       description: string;
     }>;
-    helpfulLinks: Array<{
+    comparisonSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+      groups: Array<{
+        title: string;
+        items: string[];
+      }>;
+      note?: string;
+    };
+    helpfulLinksSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+      columns?: "two" | "three" | "four";
+    };
+    helpfulLinks?: Array<{
       title: string;
       description: string;
       href: string;
     }>;
+    faqSection?: {
+      eyebrow: string;
+      heading: string;
+      intro: string;
+    };
     faqs: FaqItem[];
     finalCta: {
       eyebrow: string;
@@ -112,7 +160,7 @@ export const corePages = {
     path: "/services/",
     title: "Family Doctor Services Edmonton | Edmonton Doctors",
     description:
-      "Explore family medicine, walk-in care, checkups, vaccinations, chronic disease care, acute care, mental health support, and more.",
+      "Explore family medicine, walk-in clinic care, checkups, prescription renewals, vaccinations, chronic disease care, acute care, mental health support, and more.",
     eyebrow: "Services",
     heading: "Primary Care Services In Edmonton",
     intro:
@@ -123,8 +171,8 @@ export const corePages = {
     title: "Walk-In Clinic Edmonton | Edmonton Doctors",
     description:
       "Find Edmonton walk-in clinic information, participating locations, hours, and registration options.",
-    eyebrow: "Walk-In Clinic Edmonton",
-    heading: "Walk-In Care When You Need Medical Attention",
+    eyebrow: "Walk-In Clinic",
+    heading: "Walk-In Clinic Care When You Need Medical Attention",
     intro:
       "Find timely care for non-emergency medical concerns. Compare participating Edmonton clinic locations, hours, phone numbers, and registration options before you visit.",
   },
@@ -183,60 +231,246 @@ export const corePages = {
 
 export const clinicServicePages: ClinicServicePage[] = [
   {
-    slug: "family-medicine",
-    path: "/services/family-medicine/",
-    title: "Family Medicine Edmonton | Edmonton Doctors",
+    slug: "family-medicine-edmonton",
+    path: "/services/family-medicine-edmonton/",
+    title: "Family Medicine Edmonton | Primary Care Doctors",
     description:
-      "Family medicine in Edmonton for children, adults, seniors, and households looking for ongoing primary care.",
+      "Family medicine in Edmonton for children, adults, seniors, and families. Ongoing primary care, preventive visits, medication reviews, health screening, and care planning.",
     eyebrow: "Family Medicine",
-    heading: "Family Medicine In Edmonton",
+    heading: "Family Medicine in Edmonton",
     intro:
-      "Build an ongoing relationship with a family doctor for prevention, health planning, and care across life stages.",
+      "Build an ongoing relationship with a family doctor for prevention, health planning, medication support, and care across every stage of life.",
     serviceType: "Family Medicine",
     patientNeeds: [
       "Ongoing primary care",
-      "Preventative health visits",
+      "Preventive health visits",
       "Medication reviews",
       "Health screening guidance",
       "Care for children, adults, and seniors",
       "Family registration support",
     ],
     highlights: [
-      "Family doctors accepting new patients",
-      "Care plans tailored to the patient and household",
-      "Registration support through a minimal online request",
+      "Primary care for children, adults, seniors, and households",
+      "Preventive health visits and screening guidance",
+      "Medication review and renewal discussions",
+      "Follow-up planning for ongoing health concerns",
+      "Clear next steps after each visit",
+      "Family doctor registration support for patients looking for ongoing care",
     ],
     relatedSlugs: [
       "checkups-physicals",
       "chronic-disease-management",
       "womens-health-edmonton",
     ],
-  },
-  {
-    slug: "walk-in-care",
-    path: "/services/walk-in-care/",
-    title: "Walk-In Care Edmonton | Edmonton Doctors",
-    description:
-      "Walk-in clinic care in Edmonton for timely medical concerns at participating clinic locations.",
-    eyebrow: "Walk-In Care",
-    heading: "Walk-In Clinic Care In Edmonton",
-    intro:
-      "Find practical clinic access for patients who need timely attention and clear next steps.",
-    serviceType: "Walk-In Care",
-    patientNeeds: [
-      "Minor illness visits",
-      "Non-emergency injury assessment",
-      "Prescription renewal discussions",
-      "Clinic follow-up guidance",
-      "Referral discussions when appropriate",
-      "Location and hours support",
-    ],
-    highlights: [
-      "Participating locations welcome walk-ins",
-      "Hours and phone numbers are easy to compare",
-      "Patients can also request family doctor registration",
-    ],
-    relatedSlugs: ["acute-illness-injury-treatment", "family-medicine"],
+    richContent: {
+      serviceSection: {
+        eyebrow: "Family Medicine Services",
+        heading: "Ongoing Family Medicine Support",
+        intro:
+          "Family medicine provides ongoing primary care for patients of all ages, including children, adults, seniors, and households looking for long-term health support. For family medicine Edmonton patients, Edmonton Doctors helps with preventive visits, medication reviews, screening guidance, chronic condition follow-up, new health concerns, and practical care planning.",
+      },
+      serviceCards: [
+        {
+          title: "Ongoing Primary Care",
+          description:
+            "Build a long-term relationship with a family doctor who can help manage your health history, concerns, medications, and care needs over time.",
+        },
+        {
+          title: "Preventive Health Visits",
+          description:
+            "Book preventive visits for health checks, screening discussions, lifestyle advice, risk review, and early detection of common health concerns.",
+        },
+        {
+          title: "Medication Reviews",
+          description:
+            "Review current medications, renewals, side effects, interactions, and whether follow-up or adjustments may be needed.",
+        },
+        {
+          title: "Health Screening Guidance",
+          description:
+            "Discuss age-appropriate screening, blood pressure checks, lab testing when appropriate, and next steps based on your health history.",
+        },
+        {
+          title: "Care for Children, Adults, and Seniors",
+          description:
+            "Family medicine supports patients across life stages, from children and young adults to working adults, older adults, and seniors.",
+        },
+        {
+          title: "Family Registration Support",
+          description:
+            "Patients can register online to request a family doctor or call the clinic to ask about availability and next steps.",
+        },
+      ],
+      listSection: {
+        eyebrow: "Care Needs",
+        heading: "What Family Medicine Can Help With",
+        intro:
+          "A family medicine clinic can support many common health needs, from routine checkups to ongoing condition management. Your provider can help assess symptoms, review your health history, discuss treatment options, and recommend follow-up when needed. This includes preventive health visits Edmonton patients book for risk review, medication review Edmonton appointments, and chronic disease follow-up Edmonton care when appropriate.",
+        columns: "two",
+        items: [
+          "General health concerns",
+          "Preventive health visits",
+          "Medication reviews and renewal discussions",
+          "Blood pressure, cholesterol, and diabetes follow-up",
+          "Children's health concerns",
+          "Seniors' health concerns",
+          "Mental health conversations when appropriate",
+          "Women's health and men's health concerns",
+          "Screening and lab test guidance",
+          "Referrals when medically appropriate",
+          "Follow-up after walk-in visits, hospital visits, or test results",
+        ],
+      },
+      localSection: {
+        eyebrow: "Local Primary Care",
+        heading: "Family Medicine in North Edmonton and Northeast Edmonton",
+        intro:
+          "Edmonton Doctors supports patients across Edmonton, including North Edmonton and Northeast Edmonton. Patients visit for ongoing primary care, preventive health visits, medication reviews, chronic condition follow-up, and family doctor registration support. Patients searching for a North Edmonton family doctor, Northeast Edmonton family medicine, a family medicine clinic Edmonton option, a family doctor Edmonton visit, primary care Edmonton services, or a family doctor accepting new patients Edmonton can call or register to ask about availability.",
+        communities: [
+          "North Edmonton",
+          "Northeast Edmonton",
+          "NE Edmonton",
+          "Clareview",
+          "Londonderry",
+          "Castle Downs",
+          "Beverly",
+          "Manning",
+          "Hermitage",
+          "Eaux Claires",
+          "McConachie",
+          "Nearby Edmonton communities",
+        ],
+      },
+      bookingSection: {
+        eyebrow: "Patient-Centered Care",
+        heading: "Why Patients Choose Edmonton Doctors",
+        intro:
+          "Patients choose Edmonton Doctors for accessible, clear, and patient-centered primary care support.",
+      },
+      bookingReasons: [
+        {
+          title: "Registration Support",
+          description:
+            "Family doctor registration support for patients looking for ongoing care, with availability that may vary by clinic capacity and provider schedule.",
+        },
+        {
+          title: "Care Across Life Stages",
+          description:
+            "Primary care for children, adults, seniors, and households looking for practical follow-up over time.",
+        },
+        {
+          title: "Clear Care Planning",
+          description:
+            "Preventive health visits, screening guidance, medication review, renewal discussions, and clear next steps after each visit.",
+        },
+      ],
+      comparisonSection: {
+        eyebrow: "Care Options",
+        heading: "Family Medicine vs Walk-In Clinic Care",
+        intro:
+          "Family medicine is best for ongoing care, prevention, medication management, screening, chronic condition follow-up, and long-term health planning. Walk-in clinic care is useful for timely, non-emergency concerns when a scheduled family medicine appointment is not available.",
+        groups: [
+          {
+            title: "Family Medicine",
+            items: [
+              "Ongoing relationship with a provider",
+              "Preventive care and screening",
+              "Medication reviews",
+              "Chronic condition follow-up",
+              "Long-term health planning",
+            ],
+          },
+          {
+            title: "Walk-In Clinic",
+            items: [
+              "Timely non-emergency concerns",
+              "Minor illness or injury assessment",
+              "Short-term symptoms",
+              "Availability may vary by clinic schedule and patient volume",
+            ],
+          },
+        ],
+        note:
+          "For chest pain, severe trouble breathing, signs of stroke, severe allergic reaction, major injury, heavy bleeding, or another medical emergency, call 911 or go to the nearest emergency department.",
+      },
+      helpfulLinksSection: {
+        eyebrow: "Related Services",
+        heading: "Related Services",
+        intro:
+          "Explore nearby care pages that connect with ongoing family medicine and primary care follow-up.",
+        columns: "four",
+      },
+      helpfulLinks: [
+        {
+          title: "Checkups & Physical Exams",
+          description:
+            "General checkups, physical exams, screening discussions, and preventive health visits in Edmonton.",
+          href: "/services/checkups-physicals/",
+        },
+        {
+          title: "Chronic Disease Management",
+          description:
+            "Primary care support for ongoing health conditions, risk management, medications, and follow-up planning.",
+          href: "/services/chronic-disease-management/",
+        },
+        {
+          title: "Women's Health",
+          description:
+            "Women's health care in Edmonton, including Pap tests, contraception, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+          href: "/services/womens-health-edmonton/",
+        },
+        {
+          title: "Walk-In Clinic",
+          description:
+            "Walk-in clinic care for timely, non-emergency health concerns in Edmonton.",
+          href: "/walk-in/",
+        },
+      ],
+      faqSection: {
+        eyebrow: "Family Medicine FAQ",
+        heading: "Frequently Asked Questions",
+        intro:
+          "Short answers about family medicine, registration, walk-in care, medication renewals, and who can receive ongoing primary care.",
+      },
+      faqs: [
+        {
+          question: "What is family medicine?",
+          answer:
+            "Family medicine is ongoing primary care for patients of all ages. It can include preventive care, health screening, medication reviews, chronic condition follow-up, new health concerns, and referrals when appropriate.",
+        },
+        {
+          question: "Can I register for a family doctor?",
+          answer:
+            "Yes. Patients can use the registration option to request a family doctor. Availability may vary by clinic capacity and provider schedule.",
+        },
+        {
+          question: "Is family medicine different from walk-in care?",
+          answer:
+            "Yes. Family medicine focuses on ongoing care and long-term health planning. Walk-in care is usually for timely, non-emergency concerns when a scheduled visit is not available.",
+        },
+        {
+          question: "Can a family doctor help with medication renewals?",
+          answer:
+            "Yes. A family doctor can review medications and discuss renewals when appropriate. Some prescriptions may require an assessment, lab work, or follow-up visit.",
+        },
+        {
+          question: "Do family doctors see children, adults, and seniors?",
+          answer:
+            "Yes. Family medicine supports patients across life stages, including children, adults, seniors, and households looking for ongoing primary care.",
+        },
+        {
+          question: "Can I call before registering?",
+          answer:
+            "Yes. Call (780) 522-1236 to ask about family doctor availability, registration steps, location details, and next steps.",
+        },
+      ],
+      finalCta: {
+        eyebrow: "Register Or Call",
+        heading: "Need Help With Family Medicine?",
+        description:
+          "Register online or call a participating Edmonton clinic to ask about family doctor availability, primary care registration, and next steps.",
+      },
+    },
   },
   {
     slug: "new-patient-registration",
@@ -262,22 +496,22 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Designed for clinic follow-up",
       "Clear path for family doctor registration",
     ],
-    relatedSlugs: ["family-medicine", "walk-in-care"],
+    relatedSlugs: ["family-medicine-edmonton", "checkups-physicals"],
   },
   {
     slug: "checkups-physicals",
     path: "/services/checkups-physicals/",
-    title: "Checkups And Physical Exams Edmonton | Edmonton Doctors",
+    title: "Checkups & Physical Exams Edmonton | Edmonton Doctors",
     description:
-      "General checkups, physical exams, screening discussions, and preventative health visits in Edmonton.",
-    eyebrow: "Checkups And Physical Exams",
-    heading: "General Checkups And Physical Exams",
+      "General checkups, physical exams, screening discussions, and preventive health visits in Edmonton.",
+    eyebrow: "Checkups & Physical Exams",
+    heading: "General Checkups & Physical Exams",
     intro:
       "Routine visits help patients review health goals, risk factors, screening needs, and changes over time.",
     serviceType: "Checkups and Physicals",
     patientNeeds: [
       "Routine health review",
-      "Preventative screening discussion",
+      "Preventive screening discussion",
       "Blood pressure and risk checks",
       "Medication review",
       "Work or school form discussions",
@@ -288,22 +522,22 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Supports family medicine follow-up",
       "Part of full-scope primary care",
     ],
-    relatedSlugs: ["family-medicine", "vaccinations-preventative-care"],
+    relatedSlugs: ["family-medicine-edmonton", "vaccinations-preventative-care"],
   },
   {
     slug: "vaccinations-preventative-care",
     path: "/services/vaccinations-preventative-care/",
-    title: "Vaccinations And Preventative Care Edmonton | Edmonton Doctors",
+    title: "Vaccinations & Preventive Care Edmonton | Edmonton Doctors",
     description:
-      "Preventative care and vaccination discussions for Edmonton patients and families.",
-    eyebrow: "Vaccinations And Preventative Care",
-    heading: "Vaccinations And Preventative Care",
+      "Preventive care and vaccination discussions for Edmonton patients and families.",
+    eyebrow: "Vaccinations & Preventive Care",
+    heading: "Vaccinations & Preventive Care",
     intro:
-      "Preventative visits help patients stay current with recommended care and reduce future health risks.",
-    serviceType: "Preventative Care",
+      "Preventive visits help patients stay current with recommended care and reduce future health risks.",
+    serviceType: "Preventive Care",
     patientNeeds: [
       "Vaccination discussions",
-      "Preventative screening",
+      "Preventive screening",
       "Travel clinic coordination where available",
       "Risk factor review",
       "Health education",
@@ -314,7 +548,7 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Helpful for adults, children, and families",
       "Beverly location offers convenient nearby pharmacy access",
     ],
-    relatedSlugs: ["checkups-physicals", "family-medicine"],
+    relatedSlugs: ["checkups-physicals", "family-medicine-edmonton"],
   },
   {
     slug: "chronic-disease-management",
@@ -340,16 +574,16 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Supports patients with complex ongoing needs",
       "Aligned with Dr. Kingsley's care interests",
     ],
-    relatedSlugs: ["family-medicine", "checkups-physicals"],
+    relatedSlugs: ["family-medicine-edmonton", "checkups-physicals"],
   },
   {
     slug: "acute-illness-injury-treatment",
     path: "/services/acute-illness-injury-treatment/",
-    title: "Acute Illness And Injury Treatment Edmonton | Edmonton Doctors",
+    title: "Acute Illness & Injury Treatment Edmonton | Edmonton Doctors",
     description:
       "Clinic visits for non-emergency illness and injury concerns in Edmonton.",
-    eyebrow: "Acute Illness And Injury",
-    heading: "Acute Illness And Injury Treatment",
+    eyebrow: "Acute Illness & Injury",
+    heading: "Acute Illness & Injury Treatment",
     intro:
       "Patients can seek timely clinic care for non-emergency concerns that need assessment and next steps.",
     serviceType: "Acute Care",
@@ -366,7 +600,37 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Designed for timely non-emergency medical concerns",
       "Location phone numbers shown clearly",
     ],
-    relatedSlugs: ["walk-in-care", "family-medicine"],
+    relatedSlugs: ["prescription-renewals", "family-medicine-edmonton"],
+  },
+  {
+    slug: "prescription-renewals",
+    path: "/services/prescription-renewals/",
+    title: "Prescription Renewals Edmonton | Edmonton Doctors",
+    description:
+      "Prescription renewal visits in Edmonton for medication review, follow-up discussions, and practical next steps with a clinic provider.",
+    eyebrow: "Prescription Renewals",
+    heading: "Prescription Renewals In Edmonton",
+    intro:
+      "Book a clinic visit to review renewal needs, current medications, and whether follow-up testing or ongoing family medicine care is recommended.",
+    serviceType: "Prescription Renewals",
+    patientNeeds: [
+      "Medication renewal discussions",
+      "Reviewing current prescriptions",
+      "Follow-up for stable medications",
+      "Blood pressure or lab follow-up where appropriate",
+      "Pharmacy coordination questions",
+      "Ongoing care planning",
+    ],
+    highlights: [
+      "Renewal requests are reviewed by a clinic provider",
+      "Medication safety and follow-up come first",
+      "Patients can also register for ongoing family medicine",
+    ],
+    relatedSlugs: [
+      "family-medicine-edmonton",
+      "chronic-disease-management",
+      "acute-illness-injury-treatment",
+    ],
   },
   {
     slug: "mental-health-support",
@@ -392,7 +656,7 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Collaborative planning at the patient's pace",
       "Part of comprehensive family medicine",
     ],
-    relatedSlugs: ["family-medicine", "chronic-disease-management"],
+    relatedSlugs: ["family-medicine-edmonton", "chronic-disease-management"],
   },
   {
     slug: "womens-health-edmonton",
@@ -400,7 +664,7 @@ export const clinicServicePages: ClinicServicePage[] = [
     title: "Women's Health Clinic Edmonton | North & NE Edmonton",
     description:
       "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton. Pap tests, contraception, prenatal counselling, hormone concerns, STI testing, and menopause support.",
-    eyebrow: "Women's Health Edmonton",
+    eyebrow: "Women's Health",
     heading: "Women's Health Clinic in Edmonton",
     intro:
       "Essential care for every stage of a woman's life. Edmonton Doctors supports patients in Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities with practical, respectful women's health care.",
@@ -420,7 +684,11 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Support for preventive visits, symptoms, and reproductive health questions",
       "Beverly and Balwin clinic access for patients in surrounding communities",
     ],
-    relatedSlugs: ["family-medicine", "checkups-physicals"],
+    relatedSlugs: [
+      "pap-tests-cervical-screening",
+      "birth-control-contraception",
+      "sti-testing",
+    ],
     richContent: {
       serviceCards: [
         {
@@ -567,28 +835,28 @@ export const clinicServicePages: ClinicServicePage[] = [
       ],
       helpfulLinks: [
         {
-          title: "Book an Appointment",
+          title: "Pap Tests & Cervical Screening",
           description:
-            "Choose a Beverly or Balwin doctor and send a short request to the clinic team.",
-          href: "/register/",
+            "Review cervical screening, Pap testing, and preventive follow-up options.",
+          href: "/services/pap-tests-cervical-screening/",
         },
         {
-          title: "Family Doctor Directory",
+          title: "Birth Control & Contraception",
           description:
-            "Meet Edmonton family physicians at Beverly Medical Center and Balwin Medical Centre.",
-          href: "/family-doctor/",
+            "Compare contraception options and talk through what may fit your health and preferences.",
+          href: "/services/birth-control-contraception/",
         },
         {
-          title: "Walk-In Clinic Access",
+          title: "Prenatal Counselling",
           description:
-            "Compare participating walk-in locations for non-emergency clinic concerns.",
-          href: "/walk-in/",
+            "Get practical early-pregnancy or preconception counselling and referral guidance.",
+          href: "/services/prenatal-counselling/",
         },
         {
-          title: "Checkups & Physical Exams",
+          title: "STI Testing",
           description:
-            "Learn about routine health reviews, screening discussions, and prevention-focused visits.",
-          href: "/services/checkups-physicals/",
+            "Book confidential STI testing and sexual health discussions.",
+          href: "/services/sti-testing/",
         },
       ],
       faqs: [
@@ -631,6 +899,130 @@ export const clinicServicePages: ClinicServicePage[] = [
       },
     },
   },
+  {
+    slug: "pap-tests-cervical-screening",
+    path: "/services/pap-tests-cervical-screening/",
+    title: "Pap Tests & Cervical Screening Edmonton | Edmonton Doctors",
+    description:
+      "Pap tests and cervical screening in Edmonton with preventive follow-up guidance from Edmonton Doctors.",
+    eyebrow: "Pap Tests & Cervical Screening",
+    heading: "Pap Tests & Cervical Screening In Edmonton",
+    intro:
+      "Book a preventive visit to discuss Pap testing, cervical screening, previous results, symptoms, and the next screening interval that fits your history.",
+    serviceType: "Cervical Screening",
+    patientNeeds: [
+      "Pap test questions",
+      "Cervical screening eligibility",
+      "Preventive health visits",
+      "Previous result follow-up",
+      "Screening interval guidance",
+      "Referral or testing next steps",
+    ],
+    highlights: [
+      "Focused preventive care for patients with a cervix",
+      "Screening guidance based on age and health history",
+      "Part of respectful women's health care in Edmonton",
+    ],
+    relatedSlugs: [
+      "womens-health-edmonton",
+      "checkups-physicals",
+      "family-medicine-edmonton",
+    ],
+    primaryCtaLabel: "Book Appointment",
+  },
+  {
+    slug: "birth-control-contraception",
+    path: "/services/birth-control-contraception/",
+    title: "Birth Control & Contraception Edmonton | Edmonton Doctors",
+    description:
+      "Birth control and contraception counselling in Edmonton, including confidential discussions about options and next steps.",
+    eyebrow: "Birth Control & Contraception",
+    heading: "Birth Control & Contraception In Edmonton",
+    intro:
+      "Talk with a clinic provider about contraception options, side effects, privacy needs, future pregnancy plans, and what may fit your health.",
+    serviceType: "Contraception Counselling",
+    patientNeeds: [
+      "Birth control counselling",
+      "Pill, patch, ring, or injection questions",
+      "IUD or implant referral discussions",
+      "Emergency contraception questions",
+      "Side effect review",
+      "Pregnancy planning considerations",
+    ],
+    highlights: [
+      "Confidential contraception conversations",
+      "Options reviewed around health, comfort, and preferences",
+      "Referral support when a device or specialist pathway is needed",
+    ],
+    relatedSlugs: [
+      "womens-health-edmonton",
+      "pap-tests-cervical-screening",
+      "sti-testing",
+    ],
+    primaryCtaLabel: "Book Appointment",
+  },
+  {
+    slug: "prenatal-counselling",
+    path: "/services/prenatal-counselling/",
+    title: "Prenatal Counselling Edmonton | Edmonton Doctors",
+    description:
+      "Prenatal counselling in Edmonton for pregnancy planning, early pregnancy questions, medication review, and referral guidance.",
+    eyebrow: "Prenatal Counselling",
+    heading: "Prenatal Counselling In Edmonton",
+    intro:
+      "Book a visit for preconception questions, early pregnancy planning, medication review, lifestyle guidance, and next-step referral support.",
+    serviceType: "Prenatal Counselling",
+    patientNeeds: [
+      "Pregnancy planning",
+      "Early pregnancy questions",
+      "Medication and supplement review",
+      "Risk factor discussion",
+      "Lifestyle and prevention guidance",
+      "Referral planning",
+    ],
+    highlights: [
+      "Practical counselling before or early in pregnancy",
+      "Support for medication, risk, and lifestyle questions",
+      "Referral guidance when obstetric or specialist care is needed",
+    ],
+    relatedSlugs: [
+      "womens-health-edmonton",
+      "family-medicine-edmonton",
+      "birth-control-contraception",
+    ],
+    primaryCtaLabel: "Book Appointment",
+  },
+  {
+    slug: "sti-testing",
+    path: "/services/sti-testing/",
+    title: "STI Testing Edmonton | Edmonton Doctors",
+    description:
+      "Confidential STI testing and sexual health care in Edmonton for symptoms, screening questions, prevention advice, and treatment planning.",
+    eyebrow: "STI Testing",
+    heading: "STI Testing In Edmonton",
+    intro:
+      "Book a confidential clinic visit for STI screening questions, symptoms, prevention advice, testing discussions, and treatment or follow-up planning.",
+    serviceType: "Sexual Health",
+    patientNeeds: [
+      "Confidential STI testing",
+      "Sexual health questions",
+      "Symptoms or exposure concerns",
+      "Prevention and safer sex advice",
+      "Treatment discussions",
+      "Follow-up planning",
+    ],
+    highlights: [
+      "Respectful and confidential sexual health care",
+      "Support for screening, symptoms, and prevention questions",
+      "Part of broader women's health and family medicine services",
+    ],
+    relatedSlugs: [
+      "womens-health-edmonton",
+      "birth-control-contraception",
+      "pap-tests-cervical-screening",
+    ],
+    primaryCtaLabel: "Book Appointment",
+  },
 ];
 
 export const faqItems: FaqItem[] = [
@@ -657,7 +1049,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Are walk-ins welcome?",
     answer:
-      "Walk-in care is welcome at participating clinics during available hours. Calling the preferred location can help confirm current availability.",
+      "Walk-in clinic care is welcome at participating clinics during available hours. Calling the preferred location can help confirm current availability.",
   },
   {
     question: "Which locations are listed?",
@@ -667,7 +1059,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What services are available?",
     answer:
-      "Common services include family medicine, walk-in care, checkups, vaccinations and preventative care, chronic disease management, acute illness and injury care, mental health support, and women's health care.",
+      "Common services include family medicine, walk-in clinic care, checkups, prescription renewals, vaccinations and preventive care, chronic disease management, acute illness and injury care, mental health support, and women's health care.",
   },
   {
     question: "What should I do for an emergency?",
@@ -687,6 +1079,37 @@ export const serviceRequestLinks = {
 export function getClinicServicePage(slug: string) {
   return allClinicServicePages.find((page) => page.slug === slug);
 }
+
+function requireClinicServicePage(slug: string) {
+  const page = getClinicServicePage(slug);
+
+  if (!page) {
+    throw new Error(`Missing clinic service page: ${slug}`);
+  }
+
+  return page;
+}
+
+export const serviceNavigationPages = [
+  requireClinicServicePage("family-medicine-edmonton"),
+  corePages.walkInClinic,
+  requireClinicServicePage("new-patient-registration"),
+  requireClinicServicePage("checkups-physicals"),
+  requireClinicServicePage("acute-illness-injury-treatment"),
+  requireClinicServicePage("prescription-renewals"),
+  requireClinicServicePage("vaccinations-preventative-care"),
+  requireClinicServicePage("chronic-disease-management"),
+  requireClinicServicePage("womens-health-edmonton"),
+  requireClinicServicePage("mental-health-support"),
+] satisfies Array<ClinicServicePage | SitePage>;
+
+export const serviceDirectoryPages = [
+  ...serviceNavigationPages,
+  requireClinicServicePage("pap-tests-cervical-screening"),
+  requireClinicServicePage("birth-control-contraception"),
+  requireClinicServicePage("prenatal-counselling"),
+  requireClinicServicePage("sti-testing"),
+] satisfies Array<ClinicServicePage | SitePage>;
 
 export function getRelatedClinicServicePages(page: ClinicServicePage) {
   return page.relatedSlugs
