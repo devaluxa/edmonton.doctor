@@ -80,23 +80,50 @@ const trackingKeys = [
   "wbraid",
 ];
 
-const formsApiUrl = process.env.NEXT_PUBLIC_FORMS_API_URL?.trim() || "";
-const registrationFormId =
-  process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID?.trim() || "";
+const defaultBeverlyRegistrationFormId =
+  "a8560735-5edd-443a-beba-990bd08cc8d3";
+const defaultBalwinRegistrationFormId =
+  "284f30f7-d0d2-4973-80d3-2d06533b8e64";
+const defaultFormsApiUrl = "https://api.onbooking.ca/v1/submissions";
+const formsApiUrl =
+  process.env.NEXT_PUBLIC_FORMS_API_URL?.trim() || defaultFormsApiUrl;
+const registrationFormIdsByLocation: Record<string, string> = {
+  "beverly-medical-center":
+    process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_BEVERLY_REGISTRATION_FORM_ID?.trim() ||
+    defaultBeverlyRegistrationFormId,
+  "balwin-medical-centre":
+    process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_BALWIN_REGISTRATION_FORM_ID?.trim() ||
+    defaultBalwinRegistrationFormId,
+};
 const turnstileSiteKey =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
 const turnstileScriptId = "cloudflare-turnstile-script";
 const thankYouHref = "/thank-you/";
 
-function getSubmitUrl() {
-  if (!formsApiUrl) {
+function getRegistrationFormId(locationId: string) {
+  return registrationFormIdsByLocation[locationId] || "";
+}
+
+function getSubmitUrl(formId: string) {
+  if (!formsApiUrl || !formId) {
     return "";
   }
 
   const normalized = formsApiUrl.replace(/\/+$/, "");
-  return normalized.endsWith("/v1/submissions")
-    ? normalized
-    : `${normalized}/v1/submissions`;
+
+  if (new RegExp(`/v1/submissions/${formId}$`, "i").test(normalized)) {
+    return normalized;
+  }
+
+  if (/\/v1\/submissions\/[0-9a-f-]{36}$/i.test(normalized)) {
+    return normalized.replace(/[0-9a-f-]{36}$/i, formId);
+  }
+
+  if (normalized.endsWith("/v1/submissions")) {
+    return `${normalized}/${formId}`;
+  }
+
+  return `${normalized}/v1/submissions/${formId}`;
 }
 
 function getTrackingData() {
@@ -154,7 +181,13 @@ export default function RegistrationLeadForm({
   const startedAt = useRef(Date.now());
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
-  const onlineSubmissionConfigured = Boolean(formsApiUrl && registrationFormId);
+  const selectedLocation = clinicLocationList.find(
+    (location) => location.id === fields.preferredLocation,
+  );
+  const selectedRegistrationFormId = getRegistrationFormId(fields.preferredLocation);
+  const onlineSubmissionConfigured = Boolean(
+    formsApiUrl && selectedRegistrationFormId,
+  );
 
   useEffect(() => {
     if (!turnstileSiteKey || !turnstileContainerRef.current) {
@@ -240,7 +273,9 @@ export default function RegistrationLeadForm({
     if (!onlineSubmissionConfigured) {
       setStatus({
         type: "error",
-        message: `Online submission is not connected yet. Please call ${businessLocation.name} at ${businessLocation.phone} to register.`,
+        message: `Online submission is not connected yet. Please call ${
+          selectedLocation?.name || businessLocation.name
+        } at ${selectedLocation?.phone || businessLocation.phone} to register.`,
       });
       return;
     }
@@ -270,15 +305,12 @@ export default function RegistrationLeadForm({
       return;
     }
 
-    const submitUrl = getSubmitUrl();
+    const submitUrl = getSubmitUrl(selectedRegistrationFormId);
 
     setIsSubmitting(true);
     setStatus({ type: "idle", message: "" });
 
     try {
-      const selectedLocation = clinicLocationList.find(
-        (location) => location.id === fields.preferredLocation,
-      );
       const response = await fetch(submitUrl, {
         method: "POST",
         headers: {
@@ -286,7 +318,7 @@ export default function RegistrationLeadForm({
         },
         body: JSON.stringify({
           siteId: "edmontondoctors",
-          formId: registrationFormId,
+          formId: selectedRegistrationFormId,
           ...fields,
           preferredLocationName: selectedLocation?.name || fields.preferredLocation,
           fields: [

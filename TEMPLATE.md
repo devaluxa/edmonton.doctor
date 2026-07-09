@@ -19,7 +19,7 @@ and rebuilt for Edmonton Doctors.
 ## Launch Checklist
 
 1. Replace the placeholder `siteUrl` in `lib/sitePages.ts` with the production domain.
-2. Confirm the `/register/` OnBooking defaults or override them with `NEXT_PUBLIC_FORMS_API_URL` and `NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID`.
+2. Confirm the `/register/` OnBooking defaults or override them with `NEXT_PUBLIC_FORMS_API_URL`, `NEXT_PUBLIC_EDMONTON_DOCTORS_BEVERLY_REGISTRATION_FORM_ID`, and `NEXT_PUBLIC_EDMONTON_DOCTORS_BALWIN_REGISTRATION_FORM_ID`.
 3. Confirm clinic hours and phone numbers before publishing.
 4. Review the generated imagery and replace it with real clinic photos if available.
 5. Run `npm run build` and `npm run review:home` before publishing.

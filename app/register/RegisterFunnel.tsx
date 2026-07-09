@@ -76,38 +76,50 @@ const trackingKeys = [
   "wbraid",
 ];
 
-const defaultRegistrationFormId = "a8560735-5edd-443a-beba-990bd08cc8d3";
+const defaultBeverlyRegistrationFormId =
+  "a8560735-5edd-443a-beba-990bd08cc8d3";
+const defaultBalwinRegistrationFormId =
+  "284f30f7-d0d2-4973-80d3-2d06533b8e64";
 const defaultFormsApiUrl = "https://api.onbooking.ca/v1/submissions";
 const formsApiUrl =
   process.env.NEXT_PUBLIC_FORMS_API_URL?.trim() || defaultFormsApiUrl;
-const registrationFormId =
-  process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID?.trim() ||
-  defaultRegistrationFormId;
+const registrationFormIdsByLocation: Record<string, string> = {
+  "beverly-medical-center":
+    process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_BEVERLY_REGISTRATION_FORM_ID?.trim() ||
+    defaultBeverlyRegistrationFormId,
+  "balwin-medical-centre":
+    process.env.NEXT_PUBLIC_EDMONTON_DOCTORS_BALWIN_REGISTRATION_FORM_ID?.trim() ||
+    defaultBalwinRegistrationFormId,
+};
 const turnstileSiteKey =
   process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() || "";
 const turnstileScriptId = "cloudflare-turnstile-script";
 const thankYouHref = "/thank-you/";
 
-function getSubmitUrl() {
-  if (!formsApiUrl) {
+function getRegistrationFormId(locationId: string) {
+  return registrationFormIdsByLocation[locationId] || "";
+}
+
+function getSubmitUrl(formId: string) {
+  if (!formsApiUrl || !formId) {
     return "";
   }
 
   const normalized = formsApiUrl.replace(/\/+$/, "");
 
-  if (new RegExp(`/v1/submissions/${registrationFormId}$`, "i").test(normalized)) {
+  if (new RegExp(`/v1/submissions/${formId}$`, "i").test(normalized)) {
     return normalized;
   }
 
   if (/\/v1\/submissions\/[0-9a-f-]{36}$/i.test(normalized)) {
-    return normalized;
+    return normalized.replace(/[0-9a-f-]{36}$/i, formId);
   }
 
   if (normalized.endsWith("/v1/submissions")) {
-    return `${normalized}/${registrationFormId}`;
+    return `${normalized}/${formId}`;
   }
 
-  return `${normalized}/v1/submissions/${registrationFormId}`;
+  return `${normalized}/v1/submissions/${formId}`;
 }
 
 function getTrackingData() {
@@ -185,12 +197,15 @@ export default function RegisterFunnel({
   const startedAt = useRef(Date.now());
   const turnstileContainerRef = useRef<HTMLDivElement>(null);
   const turnstileWidgetId = useRef<string | null>(null);
-  const onlineSubmissionConfigured = Boolean(formsApiUrl && registrationFormId);
 
   const selectedDoctor =
     doctorProfiles.find((doctor) => doctor.slug === selectedDoctorSlug) ||
     doctorProfiles[0];
   const selectedLocation = getClinicForDoctor(selectedDoctor);
+  const selectedRegistrationFormId = getRegistrationFormId(selectedLocation.id);
+  const onlineSubmissionConfigured = Boolean(
+    formsApiUrl && selectedRegistrationFormId,
+  );
   const featuredDoctors = useMemo(() => doctorProfiles.slice(0, 3), []);
 
   useEffect(() => {
@@ -293,7 +308,7 @@ export default function RegisterFunnel({
     if (!onlineSubmissionConfigured) {
       setStatus({
         type: "error",
-        message: `Online requests are not connected yet. Please call ${selectedLocation.name} at ${selectedLocation.phone}.`,
+        message: `Online requests are not connected yet for ${selectedLocation.name}. Please call ${selectedLocation.phone}.`,
       });
       return;
     }
@@ -306,7 +321,7 @@ export default function RegisterFunnel({
       return;
     }
 
-    const submitUrl = getSubmitUrl();
+    const submitUrl = getSubmitUrl(selectedRegistrationFormId);
 
     setIsSubmitting(true);
     setStatus({ type: "idle", message: "" });
@@ -314,7 +329,7 @@ export default function RegisterFunnel({
     try {
       const payload = {
         siteId: "edmontondoctors",
-        formId: registrationFormId,
+        formId: selectedRegistrationFormId,
         ...fields,
         preferredDoctor: selectedDoctor.name,
         preferredDoctorFullName: selectedDoctor.fullName || selectedDoctor.name,

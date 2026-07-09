@@ -22,14 +22,17 @@ Add these in GitHub under **Settings -> Secrets and variables -> Actions -> Repo
 Optional production form secrets:
 
 - `NEXT_PUBLIC_FORMS_API_URL`
-- `NEXT_PUBLIC_EDMONTON_DOCTORS_REGISTRATION_FORM_ID`
+- `NEXT_PUBLIC_EDMONTON_DOCTORS_BEVERLY_REGISTRATION_FORM_ID`
+- `NEXT_PUBLIC_EDMONTON_DOCTORS_BALWIN_REGISTRATION_FORM_ID`
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
 
-The `/register/` funnel has production-safe public defaults for OnBooking:
+The `/register/` funnel has production-safe public defaults for OnBooking. It routes by selected clinic:
 
 - API URL: `https://api.onbooking.ca/v1/submissions`
-- Form ID: `a8560735-5edd-443a-beba-990bd08cc8d3`
-- Submit route: `https://api.onbooking.ca/v1/submissions/a8560735-5edd-443a-beba-990bd08cc8d3`
+- Beverly/Kingsley form ID: `a8560735-5edd-443a-beba-990bd08cc8d3`
+- Beverly/Kingsley submit route: `https://api.onbooking.ca/v1/submissions/a8560735-5edd-443a-beba-990bd08cc8d3`
+- Balwin form ID: `284f30f7-d0d2-4973-80d3-2d06533b8e64`
+- Balwin submit route: `https://api.onbooking.ca/v1/submissions/284f30f7-d0d2-4973-80d3-2d06533b8e64`
 
 Only add the form secrets above if these values need to be overridden for a future environment or a new form.
 

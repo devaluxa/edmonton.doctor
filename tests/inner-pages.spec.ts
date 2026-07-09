@@ -62,8 +62,22 @@ const forbiddenVisibleCopy = [
   "device repair",
 ];
 
-const onBookingRegistrationFormId = "a8560735-5edd-443a-beba-990bd08cc8d3";
-const onBookingSubmissionsUrl = `https://api.onbooking.ca/v1/submissions/${onBookingRegistrationFormId}`;
+const onBookingBeverlyRegistrationFormId =
+  "a8560735-5edd-443a-beba-990bd08cc8d3";
+const onBookingBalwinRegistrationFormId =
+  "284f30f7-d0d2-4973-80d3-2d06533b8e64";
+const onBookingBeverlySubmissionsUrl = `https://api.onbooking.ca/v1/submissions/${onBookingBeverlyRegistrationFormId}`;
+const onBookingBalwinSubmissionsUrl = `https://api.onbooking.ca/v1/submissions/${onBookingBalwinRegistrationFormId}`;
+
+type SubmissionPayload = Record<string, unknown> & {
+  fields?: unknown[];
+};
+
+function requireSubmissionPayload(payload: SubmissionPayload | null) {
+  expect(payload).not.toBeNull();
+
+  return payload as SubmissionPayload;
+}
 
 async function fillRegisterFunnel(page: import("@playwright/test").Page) {
   await page.locator('input[name="name"]').fill("Playwright Test Patient");
@@ -392,6 +406,9 @@ test.describe("inner medical page system", () => {
     page,
   }) => {
     await page.goto("/register-bev/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator('input[name="preferredDoctorSlug"]')).toHaveValue(
+      "dr-kingsley",
+    );
     await expect(page.locator('input[name="preferredLocation"]')).toHaveValue(
       "beverly-medical-center",
     );
@@ -400,6 +417,9 @@ test.describe("inner medical page system", () => {
     );
 
     await page.goto("/register-balwin/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator('input[name="preferredDoctorSlug"]')).toHaveValue(
+      "dr-asim-bilal",
+    );
     await expect(page.locator('input[name="preferredLocation"]')).toHaveValue(
       "balwin-medical-centre",
     );
@@ -664,9 +684,9 @@ test.describe("inner medical page system", () => {
   test("register funnel submits Balwin doctor payload to OnBooking and redirects", async ({
     page,
   }) => {
-    let payload: Record<string, any> | null = null;
+    let payload: SubmissionPayload | null = null;
 
-    await page.route(onBookingSubmissionsUrl, async (route) => {
+    await page.route(onBookingBalwinSubmissionsUrl, async (route) => {
       payload = route.request().postDataJSON();
       await route.fulfill({
         status: 200,
@@ -688,9 +708,11 @@ test.describe("inner medical page system", () => {
       page.getByRole("button", { name: "Send Request" }).click(),
     ]);
 
-    expect(payload).toMatchObject({
+    const submittedPayload = requireSubmissionPayload(payload);
+
+    expect(submittedPayload).toMatchObject({
       siteId: "edmontondoctors",
-      formId: onBookingRegistrationFormId,
+      formId: onBookingBalwinRegistrationFormId,
       name: "Playwright Test Patient",
       phone: "(780) 555-0199",
       email: "edmonton.doctor.test+playwright@example.com",
@@ -701,7 +723,7 @@ test.describe("inner medical page system", () => {
       preferredLocationName: "Balwin Medical Centre",
       bookingHref: "https://qstb8.healthquest.ca:3000/onlinebooking",
     });
-    expect(payload?.fields).toEqual(
+    expect(submittedPayload.fields).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
           id: "preferred_doctor",
@@ -722,9 +744,9 @@ test.describe("inner medical page system", () => {
   test("register funnel submits Beverly doctor payload to OnBooking and redirects", async ({
     page,
   }) => {
-    let payload: Record<string, any> | null = null;
+    let payload: SubmissionPayload | null = null;
 
-    await page.route(onBookingSubmissionsUrl, async (route) => {
+    await page.route(onBookingBeverlySubmissionsUrl, async (route) => {
       payload = route.request().postDataJSON();
       await route.fulfill({
         status: 201,
@@ -744,9 +766,11 @@ test.describe("inner medical page system", () => {
       page.getByRole("button", { name: "Send Request" }).click(),
     ]);
 
-    expect(payload).toMatchObject({
+    const submittedPayload = requireSubmissionPayload(payload);
+
+    expect(submittedPayload).toMatchObject({
       siteId: "edmontondoctors",
-      formId: onBookingRegistrationFormId,
+      formId: onBookingBeverlyRegistrationFormId,
       preferredDoctor: "Dr. Kingsley",
       preferredDoctorSlug: "dr-kingsley",
       preferredLocation: "beverly-medical-center",
@@ -755,10 +779,66 @@ test.describe("inner medical page system", () => {
     });
   });
 
+  test("Beverly registration route submits to the Beverly OnBooking form", async ({
+    page,
+  }) => {
+    let beverlyPayload: SubmissionPayload | null = null;
+
+    await page.route(onBookingBeverlySubmissionsUrl, async (route) => {
+      beverlyPayload = route.request().postDataJSON();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, submissionId: "playwright-bev-route" }),
+      });
+    });
+
+    await page.goto("/register-bev/", { waitUntil: "domcontentloaded" });
+    await fillRegisterFunnel(page);
+    await Promise.all([
+      page.waitForURL("**/thank-you/"),
+      page.getByRole("button", { name: "Send Request" }).click(),
+    ]);
+
+    expect(requireSubmissionPayload(beverlyPayload)).toMatchObject({
+      formId: onBookingBeverlyRegistrationFormId,
+      preferredDoctorSlug: "dr-kingsley",
+      preferredLocation: "beverly-medical-center",
+    });
+  });
+
+  test("Balwin registration route submits to the Balwin OnBooking form", async ({
+    page,
+  }) => {
+    let balwinPayload: SubmissionPayload | null = null;
+
+    await page.route(onBookingBalwinSubmissionsUrl, async (route) => {
+      balwinPayload = route.request().postDataJSON();
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify({ ok: true, submissionId: "playwright-balwin-route" }),
+      });
+    });
+
+    await page.goto("/register-balwin/", { waitUntil: "domcontentloaded" });
+    await fillRegisterFunnel(page);
+    await Promise.all([
+      page.waitForURL("**/thank-you/"),
+      page.getByRole("button", { name: "Send Request" }).click(),
+    ]);
+
+    expect(requireSubmissionPayload(balwinPayload)).toMatchObject({
+      formId: onBookingBalwinRegistrationFormId,
+      preferredDoctorSlug: "dr-asim-bilal",
+      preferredLocation: "balwin-medical-centre",
+    });
+  });
+
   test("register funnel shows readable error when OnBooking rejects the request", async ({
     page,
   }) => {
-    await page.route(onBookingSubmissionsUrl, async (route) => {
+    await page.route(onBookingBeverlySubmissionsUrl, async (route) => {
       await route.fulfill({
         status: 422,
         contentType: "application/json",
