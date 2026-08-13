@@ -507,7 +507,7 @@ test.describe("inner medical page system", () => {
       "Essential care for every stage of a woman's life.",
       "Pap Tests & Cervical Screening",
       "Prenatal Counselling",
-      "STI Testing",
+      "Sexual Health",
       "Menopause & Perimenopause",
       "Women's Health Care In North Edmonton & Northeast Edmonton",
       "Women's Health FAQ",
@@ -535,7 +535,6 @@ test.describe("inner medical page system", () => {
     for (const href of [
       "/services/pap-tests-cervical-screening/",
       "/services/prenatal-counselling/",
-      "/services/sti-testing/",
     ]) {
       await expect(page.locator(`main a[href="${href}"]`).first()).toBeVisible();
     }

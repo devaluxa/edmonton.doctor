@@ -46,13 +46,13 @@ export default function ClinicServicePageTemplate({
     eyebrow: "Women's Health Services",
     heading: "Beverly And Balwin Women's Health Services",
     intro:
-      "From Pap tests and prenatal counselling to menopause support and STI testing, these visits are handled with clear explanations, privacy, and practical next steps for patients in North Edmonton and Northeast Edmonton.",
+      "From Pap tests and prenatal counselling to menopause support and sexual health care, these visits are handled with clear explanations, privacy, and practical next steps for patients in North Edmonton and Northeast Edmonton.",
   };
   const detailSection = richContent?.detailSection || {
     eyebrow: "Care Details",
     heading: "Women's Health Visits Patients Commonly Book",
     intro:
-      "These visits can be preventive, symptom-based, or part of ongoing family medicine care. Your provider can help decide what testing, treatment, follow-up, or referral makes sense.",
+      "These visits can be preventive, symptom-based, or part of ongoing family medicine care. Your provider can help decide what assessment, treatment, follow-up, or referral makes sense.",
   };
   const visitSection = richContent?.visitSection || {
     eyebrow: "What To Expect",

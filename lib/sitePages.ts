@@ -663,7 +663,7 @@ export const clinicServicePages: ClinicServicePage[] = [
     path: "/services/womens-health-edmonton/",
     title: "Women's Health Clinic Edmonton | North & NE Edmonton",
     description:
-      "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton. Pap tests, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+      "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton. Pap tests, prenatal counselling, hormone concerns, sexual health care, and menopause support.",
     eyebrow: "Women's Health",
     heading: "Women's Health Clinic in Edmonton",
     intro:
@@ -676,17 +676,14 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Prenatal counselling",
       "Hormone-related concerns",
       "Menopause and perimenopause support",
-      "Confidential STI testing",
+      "Confidential sexual health care",
     ],
     highlights: [
       "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton",
       "Support for preventive visits, symptoms, and general women's health questions",
       "Beverly and Balwin clinic access for patients in surrounding communities",
     ],
-    relatedSlugs: [
-      "pap-tests-cervical-screening",
-      "sti-testing",
-    ],
+    relatedSlugs: ["pap-tests-cervical-screening"],
     richContent: {
       serviceCards: [
         {
@@ -715,9 +712,9 @@ export const clinicServicePages: ClinicServicePage[] = [
             "Discuss hot flashes, night sweats, sleep changes, mood symptoms, vaginal dryness, cycle changes, and hormone or non-hormone options.",
         },
         {
-          title: "STI Testing & Sexual Health",
+          title: "Sexual Health",
           description:
-            "Confidential sexual health care for STI testing, symptom assessment, prevention advice, safer sex counselling, and treatment planning.",
+            "Confidential sexual health care for symptom assessment, prevention advice, safer sex counselling, and treatment planning.",
         },
         {
           title: "Breast Health",
@@ -744,12 +741,12 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           title: "Pap Tests & Cervical Screening",
           description:
-            "In Alberta, women and people with a cervix aged 25 to 69 may be eligible for cervical cancer screening. Pap testing is generally recommended every 3 years for ages 25 to 49, while cervical screening testing is generally recommended every 5 years for ages 50 to 69. Your provider may recommend a different schedule based on your history or previous results.",
+            "In Alberta, women and people with a cervix aged 25 to 69 may be eligible for cervical cancer screening. Pap tests are generally recommended every 3 years for ages 25 to 49, while cervical screening is generally recommended every 5 years for ages 50 to 69. Your provider may recommend a different schedule based on your history or previous results.",
         },
         {
           title: "Hormone, Menstrual & Menopause Concerns",
           description:
-            "Periods, hormones, perimenopause, and menopause can affect sleep, mood, bleeding patterns, energy, skin, weight, and vaginal health. A clinic visit can help review symptoms, discuss testing when appropriate, and plan practical next steps.",
+            "Periods, hormones, perimenopause, and menopause can affect sleep, mood, bleeding patterns, energy, skin, weight, and vaginal health. A clinic visit can help review symptoms, discuss appropriate assessments, and plan practical next steps.",
         },
         {
           title: "Prenatal & Postpartum Care",
@@ -759,14 +756,14 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           title: "Sexual, Vaginal, Urinary & Breast Health",
           description:
-            "Patients can book confidential care for STI testing, sexual health questions, vaginal symptoms, urinary concerns, pelvic discomfort, breast concerns, and screening or imaging referral discussions when needed.",
+            "Patients can book confidential care for sexual health questions, vaginal symptoms, urinary concerns, pelvic discomfort, breast concerns, and screening or imaging referral discussions when needed.",
         },
       ],
       localSection: {
         eyebrow: "Local Women's Health Care",
         heading: "Women's Health Care In North Edmonton & Northeast Edmonton",
         intro:
-          "Edmonton Doctors supports patients from Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities. Patients visit for Pap tests, prenatal support, hormone concerns, menopause care, STI testing, and routine women's health checkups.",
+          "Edmonton Doctors supports patients from Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities. Patients visit for Pap tests, prenatal support, hormone concerns, menopause care, sexual health care, and routine women's health checkups.",
         communities: [
           "Beverly",
           "Balwin",
@@ -791,12 +788,12 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           title: "Share The Main Concern",
           description:
-            "Tell the clinic team whether you need screening, prenatal counselling, symptom review, STI testing, or another women's health visit.",
+            "Tell the clinic team whether you need screening, prenatal counselling, symptom review, sexual health care, or another women's health visit.",
         },
         {
           title: "Plan Next Steps",
           description:
-            "Your provider can review your concern, discuss options, order testing when appropriate, and arrange follow-up or referrals when needed.",
+            "Your provider can review your concern, discuss options, arrange appropriate assessments, and coordinate follow-up or referrals when needed.",
         },
       ],
       bookingReasons: [
@@ -815,7 +812,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           title: "Pap Tests & Cervical Screening",
           description:
-            "Review cervical screening, Pap testing, and preventive follow-up options.",
+            "Review cervical screening, Pap tests, and preventive follow-up options.",
           href: "/services/pap-tests-cervical-screening/",
         },
         {
@@ -823,12 +820,6 @@ export const clinicServicePages: ClinicServicePage[] = [
           description:
             "Get practical early-pregnancy counselling and referral guidance.",
           href: "/services/prenatal-counselling/",
-        },
-        {
-          title: "STI Testing",
-          description:
-            "Book confidential STI testing and sexual health discussions.",
-          href: "/services/sti-testing/",
         },
       ],
       faqs: [
@@ -840,22 +831,17 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           question: "How often should I get a Pap test in Alberta?",
           answer:
-            "In Alberta, Pap testing is generally recommended every 3 years for ages 25 to 49. For ages 50 to 69, cervical screening testing is generally recommended every 5 years. Your provider may recommend a different schedule based on your health history or previous results.",
+            "In Alberta, Pap tests are generally recommended every 3 years for ages 25 to 49. For ages 50 to 69, cervical screening is generally recommended every 5 years. Your provider may recommend a different schedule based on your health history or previous results.",
         },
         {
           question: "Can I book for irregular or painful periods?",
           answer:
-            "Yes. Irregular, heavy, painful, or missed periods can have many causes. A visit can help review symptoms, medical history, possible testing, and treatment options.",
+            "Yes. Irregular, heavy, painful, or missed periods can have many causes. A visit can help review symptoms, medical history, possible assessments, and treatment options.",
         },
         {
           question: "Do you provide prenatal counselling?",
           answer:
             "Yes. Prenatal counselling can help with early pregnancy questions, medication review, health risks, supplements, lifestyle guidance, and referral planning.",
-        },
-        {
-          question: "Is STI testing confidential?",
-          answer:
-            "Yes. Sexual health visits and STI testing are handled respectfully and confidentially.",
         },
       ],
       finalCta: {
