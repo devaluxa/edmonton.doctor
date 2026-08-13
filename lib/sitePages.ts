@@ -416,7 +416,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           title: "Women's Health",
           description:
-            "Women's health care in Edmonton, including Pap tests, contraception, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+            "Women's health care in Edmonton, including Pap tests, prenatal counselling, hormone concerns, STI testing, and menopause support.",
           href: "/services/womens-health-edmonton/",
         },
         {
@@ -663,7 +663,7 @@ export const clinicServicePages: ClinicServicePage[] = [
     path: "/services/womens-health-edmonton/",
     title: "Women's Health Clinic Edmonton | North & NE Edmonton",
     description:
-      "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton. Pap tests, contraception, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+      "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton. Pap tests, prenatal counselling, hormone concerns, STI testing, and menopause support.",
     eyebrow: "Women's Health",
     heading: "Women's Health Clinic in Edmonton",
     intro:
@@ -673,7 +673,6 @@ export const clinicServicePages: ClinicServicePage[] = [
     heroImageShape: "square",
     patientNeeds: [
       "Pap tests and cervical screening",
-      "Contraception and birth control counselling",
       "Prenatal counselling",
       "Hormone-related concerns",
       "Menopause and perimenopause support",
@@ -681,12 +680,11 @@ export const clinicServicePages: ClinicServicePage[] = [
     ],
     highlights: [
       "Women's health care in Edmonton, North Edmonton, and Northeast Edmonton",
-      "Support for preventive visits, symptoms, and reproductive health questions",
+      "Support for preventive visits, symptoms, and general women's health questions",
       "Beverly and Balwin clinic access for patients in surrounding communities",
     ],
     relatedSlugs: [
       "pap-tests-cervical-screening",
-      "birth-control-contraception",
       "sti-testing",
     ],
     richContent: {
@@ -697,14 +695,9 @@ export const clinicServicePages: ClinicServicePage[] = [
             "Routine cervical screening and Pap tests help detect abnormal cervical cell changes early, based on age, health history, and Alberta screening guidance.",
         },
         {
-          title: "Contraception & Birth Control",
-          description:
-            "Talk through birth control pills, patches, rings, injections, IUD referrals, implants, condoms, and emergency contraception in a confidential visit.",
-        },
-        {
           title: "Prenatal Counselling",
           description:
-            "Planning a pregnancy or newly pregnant? A clinic visit can help with early questions, medication review, risk review, lifestyle advice, and referrals.",
+            "Newly pregnant? A clinic visit can help with early questions, medication review, risk review, lifestyle advice, and referrals.",
         },
         {
           title: "Hormonal Care",
@@ -737,14 +730,9 @@ export const clinicServicePages: ClinicServicePage[] = [
             "Care for discharge, itching, irritation, infections, urinary symptoms, pelvic discomfort, and related concerns.",
         },
         {
-          title: "Fertility & Preconception",
-          description:
-            "Prepare for pregnancy with cycle tracking discussions, supplement review, health history review, and next-step referral planning.",
-        },
-        {
           title: "Postpartum Support",
           description:
-            "Follow-up after birth for recovery concerns, mood changes, contraception, breastfeeding-related questions, and ongoing care planning.",
+            "Follow-up after birth for recovery concerns, mood changes, breastfeeding-related questions, and ongoing care planning.",
         },
         {
           title: "Preventive Checkups",
@@ -759,19 +747,14 @@ export const clinicServicePages: ClinicServicePage[] = [
             "In Alberta, women and people with a cervix aged 25 to 69 may be eligible for cervical cancer screening. Pap testing is generally recommended every 3 years for ages 25 to 49, while cervical screening testing is generally recommended every 5 years for ages 50 to 69. Your provider may recommend a different schedule based on your history or previous results.",
         },
         {
-          title: "Contraception",
-          description:
-            "Contraception should fit your health, comfort, lifestyle, cost considerations, privacy needs, and future pregnancy plans. Edmonton Doctors can discuss options such as pills, patches, rings, injections, IUD referrals, implants, condoms, and emergency contraception.",
-        },
-        {
           title: "Hormone, Menstrual & Menopause Concerns",
           description:
             "Periods, hormones, perimenopause, and menopause can affect sleep, mood, bleeding patterns, energy, skin, weight, and vaginal health. A clinic visit can help review symptoms, discuss testing when appropriate, and plan practical next steps.",
         },
         {
-          title: "Pregnancy Planning & Postpartum Care",
+          title: "Prenatal & Postpartum Care",
           description:
-            "Whether you are planning a pregnancy, newly pregnant, or recovering after birth, the clinic can help with medication review, risk discussion, supplements, lifestyle questions, referral support, mood concerns, and contraception planning.",
+            "If you are newly pregnant or recovering after birth, the clinic can help with medication review, risk discussion, supplements, lifestyle questions, referral support, and mood concerns.",
         },
         {
           title: "Sexual, Vaginal, Urinary & Breast Health",
@@ -783,7 +766,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         eyebrow: "Local Women's Health Care",
         heading: "Women's Health Care In North Edmonton & Northeast Edmonton",
         intro:
-          "Edmonton Doctors supports patients from Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities. Patients visit for Pap tests, contraception counselling, prenatal support, hormone concerns, menopause care, STI testing, and routine women's health checkups.",
+          "Edmonton Doctors supports patients from Beverly, Balwin, North Edmonton, Northeast Edmonton, and nearby communities. Patients visit for Pap tests, prenatal support, hormone concerns, menopause care, STI testing, and routine women's health checkups.",
         communities: [
           "Beverly",
           "Balwin",
@@ -808,7 +791,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           title: "Share The Main Concern",
           description:
-            "Tell the clinic team whether you need screening, contraception advice, prenatal counselling, symptom review, STI testing, or another women's health visit.",
+            "Tell the clinic team whether you need screening, prenatal counselling, symptom review, STI testing, or another women's health visit.",
         },
         {
           title: "Plan Next Steps",
@@ -821,11 +804,6 @@ export const clinicServicePages: ClinicServicePage[] = [
           title: "You are due for screening",
           description:
             "Book if you have questions about Pap tests, cervical screening, breast health, or preventive checkups.",
-        },
-        {
-          title: "You want contraception advice",
-          description:
-            "A visit can help compare birth control options and decide what may fit your health and preferences.",
         },
         {
           title: "Your symptoms have changed",
@@ -841,15 +819,9 @@ export const clinicServicePages: ClinicServicePage[] = [
           href: "/services/pap-tests-cervical-screening/",
         },
         {
-          title: "Birth Control & Contraception",
-          description:
-            "Compare contraception options and talk through what may fit your health and preferences.",
-          href: "/services/birth-control-contraception/",
-        },
-        {
           title: "Prenatal Counselling",
           description:
-            "Get practical early-pregnancy or preconception counselling and referral guidance.",
+            "Get practical early-pregnancy counselling and referral guidance.",
           href: "/services/prenatal-counselling/",
         },
         {
@@ -871,11 +843,6 @@ export const clinicServicePages: ClinicServicePage[] = [
             "In Alberta, Pap testing is generally recommended every 3 years for ages 25 to 49. For ages 50 to 69, cervical screening testing is generally recommended every 5 years. Your provider may recommend a different schedule based on your health history or previous results.",
         },
         {
-          question: "Can I get birth control from your clinic?",
-          answer:
-            "Yes. A clinic visit can include contraception counselling and discussion of options such as birth control pills, patches, rings, injections, IUD referrals, implants, condoms, and emergency contraception.",
-        },
-        {
           question: "Can I book for irregular or painful periods?",
           answer:
             "Yes. Irregular, heavy, painful, or missed periods can have many causes. A visit can help review symptoms, medical history, possible testing, and treatment options.",
@@ -883,7 +850,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         {
           question: "Do you provide prenatal counselling?",
           answer:
-            "Yes. Prenatal counselling can help with pregnancy planning, early pregnancy questions, medication review, health risks, supplements, lifestyle guidance, and referral planning.",
+            "Yes. Prenatal counselling can help with early pregnancy questions, medication review, health risks, supplements, lifestyle guidance, and referral planning.",
         },
         {
           question: "Is STI testing confidential?",
@@ -931,49 +898,17 @@ export const clinicServicePages: ClinicServicePage[] = [
     primaryCtaLabel: "Book Appointment",
   },
   {
-    slug: "birth-control-contraception",
-    path: "/services/birth-control-contraception/",
-    title: "Birth Control & Contraception Edmonton | Edmonton Doctors",
-    description:
-      "Birth control and contraception counselling in Edmonton, including confidential discussions about options and next steps.",
-    eyebrow: "Birth Control & Contraception",
-    heading: "Birth Control & Contraception In Edmonton",
-    intro:
-      "Talk with a clinic provider about contraception options, side effects, privacy needs, future pregnancy plans, and what may fit your health.",
-    serviceType: "Contraception Counselling",
-    patientNeeds: [
-      "Birth control counselling",
-      "Pill, patch, ring, or injection questions",
-      "IUD or implant referral discussions",
-      "Emergency contraception questions",
-      "Side effect review",
-      "Pregnancy planning considerations",
-    ],
-    highlights: [
-      "Confidential contraception conversations",
-      "Options reviewed around health, comfort, and preferences",
-      "Referral support when a device or specialist pathway is needed",
-    ],
-    relatedSlugs: [
-      "womens-health-edmonton",
-      "pap-tests-cervical-screening",
-      "sti-testing",
-    ],
-    primaryCtaLabel: "Book Appointment",
-  },
-  {
     slug: "prenatal-counselling",
     path: "/services/prenatal-counselling/",
     title: "Prenatal Counselling Edmonton | Edmonton Doctors",
     description:
-      "Prenatal counselling in Edmonton for pregnancy planning, early pregnancy questions, medication review, and referral guidance.",
+      "Prenatal counselling in Edmonton for early pregnancy questions, medication review, and referral guidance.",
     eyebrow: "Prenatal Counselling",
     heading: "Prenatal Counselling In Edmonton",
     intro:
-      "Book a visit for preconception questions, early pregnancy planning, medication review, lifestyle guidance, and next-step referral support.",
+      "Book a visit for early pregnancy care, medication review, lifestyle guidance, and next-step referral support.",
     serviceType: "Prenatal Counselling",
     patientNeeds: [
-      "Pregnancy planning",
       "Early pregnancy questions",
       "Medication and supplement review",
       "Risk factor discussion",
@@ -981,14 +916,13 @@ export const clinicServicePages: ClinicServicePage[] = [
       "Referral planning",
     ],
     highlights: [
-      "Practical counselling before or early in pregnancy",
+      "Practical counselling early in pregnancy",
       "Support for medication, risk, and lifestyle questions",
       "Referral guidance when obstetric or specialist care is needed",
     ],
     relatedSlugs: [
       "womens-health-edmonton",
       "family-medicine-edmonton",
-      "birth-control-contraception",
     ],
     primaryCtaLabel: "Book Appointment",
   },
@@ -1018,7 +952,6 @@ export const clinicServicePages: ClinicServicePage[] = [
     ],
     relatedSlugs: [
       "womens-health-edmonton",
-      "birth-control-contraception",
       "pap-tests-cervical-screening",
     ],
     primaryCtaLabel: "Book Appointment",
@@ -1106,7 +1039,6 @@ export const serviceNavigationPages = [
 export const serviceDirectoryPages = [
   ...serviceNavigationPages,
   requireClinicServicePage("pap-tests-cervical-screening"),
-  requireClinicServicePage("birth-control-contraception"),
   requireClinicServicePage("prenatal-counselling"),
   requireClinicServicePage("sti-testing"),
 ] satisfies Array<ClinicServicePage | SitePage>;

@@ -64,11 +64,6 @@ const serviceVisualsBySlug: Record<string, ServiceHeroVisual> = {
     alt: "Women's health care at Edmonton Doctors",
     label: "Cervical Screening",
   },
-  "birth-control-contraception": {
-    src: "https://res.cloudinary.com/dcb389szc/image/upload/f_auto,q_auto,w_1000,c_fill,ar_1:1/v1782974897/EdmontonDoctors/womens_health_1.png",
-    alt: "Women's health consultation at Edmonton Doctors",
-    label: "Birth Control",
-  },
   "prenatal-counselling": {
     src: medicalImages.doctorConsultation.src,
     alt: medicalImages.doctorConsultation.alt,

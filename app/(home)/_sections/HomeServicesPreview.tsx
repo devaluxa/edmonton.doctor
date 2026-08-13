@@ -28,7 +28,7 @@ const services = [
     icon: Venus,
     title: "Women's Health",
     description:
-      "Pap tests, contraception advice, prenatal counselling, hormone concerns, STI testing, and menopause support.",
+      "Pap tests, prenatal counselling, hormone concerns, STI testing, and menopause support.",
     href: "/services/womens-health-edmonton/",
   },
 ];

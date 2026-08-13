@@ -155,9 +155,9 @@ export const serviceSections: ServiceSection[] = [
         code: "W1",
         name: "Women's Health",
         summary:
-          "Pap tests, contraception counselling, prenatal support, hormone concerns, STI testing, and menopause care.",
+          "Pap tests, prenatal support, hormone concerns, STI testing, and menopause care.",
         href: "/services/womens-health-edmonton/",
-        tags: ["Pap tests", "Contraception", "Menopause"],
+        tags: ["Pap tests", "Prenatal", "Menopause"],
       },
       {
         code: "W2",
@@ -169,19 +169,19 @@ export const serviceSections: ServiceSection[] = [
       },
       {
         code: "W3",
-        name: "Birth Control & Contraception",
+        name: "Menstrual & Hormone Health",
         summary:
-          "Confidential contraception counselling and birth control option discussions.",
-        href: "/services/birth-control-contraception/",
-        tags: ["Birth control", "Contraception", "Counselling"],
+          "Support for menstrual symptoms, hormone concerns, perimenopause, and menopause.",
+        href: "/services/womens-health-edmonton/",
+        tags: ["Menstrual health", "Hormones", "Menopause"],
       },
       {
         code: "W4",
         name: "Prenatal Counselling",
         summary:
-          "Pregnancy planning, early pregnancy questions, medication review, and referral guidance.",
+          "Early pregnancy questions, medication review, and referral guidance.",
         href: "/services/prenatal-counselling/",
-        tags: ["Prenatal", "Pregnancy", "Planning"],
+        tags: ["Prenatal", "Pregnancy", "Referrals"],
       },
       {
         code: "W5",

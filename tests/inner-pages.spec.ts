@@ -6,7 +6,6 @@ const innerPages = [
   "/services/womens-health-edmonton/",
   "/services/prescription-renewals/",
   "/services/pap-tests-cervical-screening/",
-  "/services/birth-control-contraception/",
   "/services/prenatal-counselling/",
   "/services/sti-testing/",
   "/family-doctor/",
@@ -507,7 +506,6 @@ test.describe("inner medical page system", () => {
     for (const text of [
       "Essential care for every stage of a woman's life.",
       "Pap Tests & Cervical Screening",
-      "Contraception & Birth Control",
       "Prenatal Counselling",
       "STI Testing",
       "Menopause & Perimenopause",
@@ -536,7 +534,6 @@ test.describe("inner medical page system", () => {
 
     for (const href of [
       "/services/pap-tests-cervical-screening/",
-      "/services/birth-control-contraception/",
       "/services/prenatal-counselling/",
       "/services/sti-testing/",
     ]) {

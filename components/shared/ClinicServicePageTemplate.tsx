@@ -46,7 +46,7 @@ export default function ClinicServicePageTemplate({
     eyebrow: "Women's Health Services",
     heading: "Beverly And Balwin Women's Health Services",
     intro:
-      "From Pap tests and contraception conversations to menopause support and STI testing, these visits are handled with clear explanations, privacy, and practical next steps for patients in North Edmonton and Northeast Edmonton.",
+      "From Pap tests and prenatal counselling to menopause support and STI testing, these visits are handled with clear explanations, privacy, and practical next steps for patients in North Edmonton and Northeast Edmonton.",
   };
   const detailSection = richContent?.detailSection || {
     eyebrow: "Care Details",
@@ -64,7 +64,7 @@ export default function ClinicServicePageTemplate({
     eyebrow: "When To Book",
     heading: "Reasons Patients Book Women's Health Visits",
     intro:
-      "Book if you are due for screening, have a new concern, want contraception advice, or need a confidential conversation about reproductive or hormone-related health.",
+      "Book if you are due for screening, have a new concern, or need a confidential conversation about women's or hormone-related health.",
   };
   const helpfulLinksSection = richContent?.helpfulLinksSection || {
     eyebrow: "Helpful Next Steps",
@@ -77,7 +77,7 @@ export default function ClinicServicePageTemplate({
     eyebrow: "Patient Questions",
     heading: "Women's Health FAQ",
     intro:
-      "Short answers to common questions about screening, contraception, prenatal counselling, symptoms, and confidential care.",
+      "Short answers to common questions about screening, prenatal counselling, symptoms, and confidential care.",
   };
   const structuredData = [
     buildMedicalClinicJsonLd(),
