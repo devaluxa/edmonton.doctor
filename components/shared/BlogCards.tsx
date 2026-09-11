@@ -4,9 +4,10 @@ import styles from "../../app/blog/Blog.module.css";
 export default function BlogCards({ posts = blogPosts }: { posts?: BlogPost[] }) {
   return (
     <div className={styles.cards}>
-      {posts.map((post, index) => (
+      {posts.map((post) => (
         <article className={styles.card} key={post.slug}>
-          <div className={styles.cardTop}><span>{post.category}</span><span aria-hidden="true">0{index + 1}</span></div>
+          <img className={styles.cardImage} src={post.image.src} alt={post.image.alt} width={1200} height={640} loading="lazy" decoding="async" />
+          <div className={styles.cardTop}><span>{post.category}</span></div>
           <div className={styles.cardBody}>
             <p className={styles.meta}><time dateTime={post.published}>{formatBlogDate(post.published)}</time> · {post.readingMinutes} min read</p>
             <h3><a href={post.path}>{post.title}</a></h3>

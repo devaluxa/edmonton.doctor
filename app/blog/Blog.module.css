@@ -8,7 +8,7 @@
 .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
 .card { border: 1px solid var(--brand-color-border); border-radius: 12px; overflow: hidden; background: white; display: flex; flex-direction: column; }
 .cardTop { display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 1.5rem; background: #e8f4f1; color: #135e57; font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; border-bottom: 1px solid var(--brand-color-border); }
-.cardTop span:last-child { font-size: 1.8rem; opacity: .6; }
+
 .cardBody { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; gap: 1rem; }
 .card h3 { font-size: 1.4rem; font-weight: 750; line-height: 1.35; color: var(--brand-color-ink); }
 .card h3 a:hover { color: var(--brand-color-primary-strong); text-decoration: underline; }
@@ -34,3 +34,17 @@
 .body a:focus-visible, .cards a:focus-visible, .contents a:focus-visible { outline: 3px solid var(--brand-color-primary); outline-offset: 4px; border-radius: 2px; }
 @media (max-width: 1050px) { .cards { gap: 1rem; } .layout { grid-template-columns: 230px minmax(0, 1fr); gap: 2rem; } }
 @media (max-width: 760px) { .cards, .layout { grid-template-columns: 1fr; } .layout { padding-top: 2rem; } .cardBody { padding: 1.3rem; } .contents ol { gap: .65rem; } }
+.cardImage { width: 100%; aspect-ratio: 1.85; object-fit: cover; }
+.featureImage { padding-top: 2rem; }
+.featureImage img { width: 100%; max-height: 480px; object-fit: cover; border-radius: 14px; }
+.inlineImage { margin: 2.5rem 0; }
+.inlineImage img { width: 100%; height: auto; border-radius: 12px; }
+.inlineImage figcaption { font-size: .85rem; color: #526174; margin-top: .7rem; line-height: 1.6; }
+.graphic { margin: 2.5rem 0; padding: 2rem; border: 1px solid #c8e3dd; border-radius: 16px; background: linear-gradient(125deg, #eaf6f2, #f8fbfa); }
+.graphicEyebrow { color: #115e59; text-transform: uppercase; font-size: .75rem; font-weight: 800; letter-spacing: .13em; margin-bottom: 1.5rem; }
+.graphicSteps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+.graphicIcon { display: inline-flex; padding: .8rem; border-radius: 12px; background: #0f766e; color: white; margin-bottom: 1rem; }
+.graphicSteps h3 { font-size: 1.05rem; font-weight: 800; line-height: 1.4; color: #12202a; margin-bottom: .6rem; }
+.graphicSteps p { font-size: .9rem; line-height: 1.7; }
+.graphicSteps a { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; font-weight: 700; margin-top: .8rem; }
+@media (max-width: 600px) { .graphicSteps { grid-template-columns: 1fr; } .graphic { padding: 1.4rem; } .graphicSteps > div + div { border-top: 1px solid #c8e3dd; padding-top: 1.3rem; } .featureImage img { aspect-ratio: 1.5; } }

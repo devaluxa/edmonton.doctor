@@ -2,7 +2,7 @@ import familyDoctor from "../content/blog/how-to-find-family-doctor-edmonton.jso
 import walkIn from "../content/blog/walk-in-clinic-vs-family-doctor-edmonton.json";
 import checkups from "../content/blog/health-checkups-preventive-care-edmonton.json";
 
-export const blogPosts = [familyDoctor, walkIn, checkups];
+export const blogPosts = [familyDoctor, walkIn, checkups].sort((a, b) => b.published.localeCompare(a.published));
 export type BlogPost = (typeof blogPosts)[number];
 export const blogSeo = {
   path: "/blog/",

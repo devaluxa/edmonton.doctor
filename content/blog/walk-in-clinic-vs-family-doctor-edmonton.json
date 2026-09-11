@@ -5,7 +5,7 @@
   "seoTitle": "Walk-In Clinic or Family Doctor in Edmonton? A Guide",
   "description": "Unsure where to seek care in Edmonton? Compare walk-in clinics, family doctors, urgent care, and emergency services, and learn how to prepare for a visit.",
   "category": "Choosing care",
-  "published": "2026-09-11",
+  "published": "2026-08-28",
   "readingMinutes": 10,
   "blocks": [
     {
@@ -27,7 +27,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Walk-in clinics provide medical assessment for non-emergency concerns without requiring a traditional scheduled appointment. Primary Care Alberta identifies minor illnesses, injuries, and general health concerns among their uses. Availability and the way patients are accepted still depend on the individual clinic. [^1]"
+      "text": "Walk-in clinics provide medical assessment for non-emergency concerns without requiring a traditional scheduled appointment. [Primary Care Alberta](https://www.primarycarealberta.ca/) identifies minor illnesses, injuries, and general health concerns among their uses. Availability and the way patients are accepted still depend on the individual clinic. [^1]"
     },
     {
       "type": "paragraph",
@@ -56,7 +56,7 @@
     },
     {
       "type": "paragraph",
-      "text": "For help judging where to seek care, contact Health Link rather than relying only on an online article."
+      "text": "For help judging where to seek care, contact [Health Link](https://www.primarycarealberta.ca/page14176.aspx) rather than relying only on an online article."
     },
     {
       "type": "heading",
@@ -65,7 +65,7 @@
     },
     {
       "type": "paragraph",
-      "text": "For ongoing medical care, your regular family doctor is often the most useful first contact. Edmonton Doctors describes [family medicine services](/services/family-medicine-edmonton/) that include preventive care, medication review, chronic-condition follow-up, screening guidance, and coordination after other healthcare visits. [^14]"
+      "text": "For ongoing medical care, your regular family doctor is often the most useful first contact. Edmonton Doctors describes [family medicine services](/services/family-medicine-edmonton/) that include [preventive care](/services/vaccinations-preventative-care/), medication review, chronic-condition follow-up, screening guidance, and coordination after other healthcare visits. [^14]"
     },
     {
       "type": "paragraph",
@@ -212,7 +212,7 @@
     },
     {
       "type": "paragraph",
-      "text": "The purpose of a medical assessment is to decide what care is appropriate, not to provide a particular prescription automatically. Choosing Wisely Canada's antibiotic guidance advises against antibiotics for viral respiratory infections such as the common cold. Antibiotics act against bacteria, not the viruses responsible for these illnesses. [^16]"
+      "text": "The purpose of a medical assessment is to decide what care is appropriate, not to provide a particular prescription automatically. [Choosing Wisely Canada](https://choosingwiselycanada.org/pamphlet/health-check-ups/)'s antibiotic guidance advises against antibiotics for viral respiratory infections such as the common cold. Antibiotics act against bacteria, not the viruses responsible for these illnesses. [^16]"
     },
     {
       "type": "paragraph",
@@ -241,7 +241,7 @@
     },
     {
       "type": "paragraph",
-      "text": "If you have a family doctor, ask what information should be passed along. If you do not, ask whether new-patient registration is available separately from the walk-in visit."
+      "text": "If you have a family doctor, ask what information should be passed along. If you do not, ask whether [new-patient registration](/services/new-patient-registration/) is available separately from the walk-in visit."
     },
     {
       "type": "paragraph",
@@ -262,7 +262,7 @@
     },
     {
       "type": "paragraph",
-      "text": "If you need paperwork, mention that before arriving. AHCIP does not cover every administrative service; medical forms and third-party examinations may involve fees. Ask the clinic about the service, cost, and appointment requirements in advance. [^11]"
+      "text": "If you need paperwork, mention that before arriving. [AHCIP](https://www.alberta.ca/ahcip-what-is-covered) does not cover every administrative service; medical forms and third-party examinations may involve fees. Ask the clinic about the service, cost, and appointment requirements in advance. [^11]"
     },
     {
       "type": "paragraph",
@@ -297,6 +297,10 @@
     {
       "type": "paragraph",
       "text": "To explore local options, review the Edmonton Doctors [walk-in information](/walk-in/) or contact your preferred participating clinic. For continuing care, use the separate [family doctor registration](/register/) pathway and confirm that your request has become an actual appointment before attending. [^17]"
+    },
+    {
+      "type": "paragraph",
+      "text": "If you need ongoing care, our [guide to finding a family doctor in Edmonton](/blog/how-to-find-family-doctor-edmonton/) explains registration and your first visit. For routine health planning, read our [preventive checkup guide](/blog/health-checkups-preventive-care-edmonton/)."
     }
   ],
   "references": [
@@ -360,5 +364,15 @@
       "label": "Edmonton Doctors: Home",
       "href": "/"
     }
-  ]
+  ],
+  "modified": "2026-09-11",
+  "image": {
+    "src": "/images/blog/walk-in-care-consultation.webp",
+    "alt": "Doctor speaking with a patient during a walk-in consultation"
+  },
+  "inlineImage": {
+    "src": "/images/blog/doctor-consultation.webp",
+    "alt": "A patient discussing care with a family doctor",
+    "caption": "A clear conversation helps you understand your care and the next steps."
+  }
 }

@@ -27,7 +27,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Preventive care focuses on the steps that are appropriate for your health before a problem becomes the main reason for seeking help. Edmonton Doctors lists routine health review, screening discussions, blood pressure and risk checks, medication review, and ongoing health planning within its [checkup services](/services/checkups-physicals/). [^18]"
+      "text": "Preventive care focuses on the steps that are appropriate for your health before a problem becomes the main reason for seeking help. Edmonton Doctors lists routine health review, [screening discussions](/services/checkups-physicals/), blood pressure and risk checks, medication review, and ongoing health planning within its [checkup services](/services/checkups-physicals/). [^18]"
     },
     {
       "type": "paragraph",
@@ -48,11 +48,11 @@
     },
     {
       "type": "paragraph",
-      "text": "Not necessarily. Choosing Wisely Canada advises that healthy adults do not automatically need a complete physical every year. The timing of visits and investigations should reflect individual needs, including symptoms, ongoing conditions, medication monitoring, and recommended preventive services. [^9]"
+      "text": "Not necessarily. [Choosing Wisely Canada](https://choosingwiselycanada.org/pamphlet/health-check-ups/) advises that healthy adults do not automatically need a complete physical every year. The timing of visits and investigations should reflect individual needs, including symptoms, ongoing conditions, medication monitoring, and recommended preventive services. [^9]"
     },
     {
       "type": "paragraph",
-      "text": "That does not mean preventive care is unimportant. It means the appointment should have a useful purpose rather than being organised around an automatic testing routine."
+      "text": "That does not mean [preventive care](/services/vaccinations-preventative-care/) is unimportant. It means the appointment should have a useful purpose rather than being organised around an automatic testing routine."
     },
     {
       "type": "paragraph",
@@ -115,7 +115,7 @@
     },
     {
       "type": "paragraph",
-      "text": "The wider discussion matters as much as an isolated laboratory number. MyHealth Alberta identifies factors such as blood pressure, diabetes, smoking, age, and family history as relevant to cardiovascular risk assessment. [^22]"
+      "text": "The wider discussion matters as much as an isolated laboratory number. [MyHealth Alberta](https://myhealth.alberta.ca/) identifies factors such as blood pressure, diabetes, smoking, age, and family history as relevant to cardiovascular risk assessment. [^22]"
     },
     {
       "type": "paragraph",
@@ -237,7 +237,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Primary Care Alberta's prevention resources include physical activity, healthy eating, immunization, screening, and support to reduce tobacco and alcohol-related harms. These are areas you can discuss according to your needs and priorities. [^28]"
+      "text": "[Primary Care Alberta](https://www.primarycarealberta.ca/)'s prevention resources include physical activity, healthy eating, immunization, screening, and support to reduce tobacco and alcohol-related harms. These are areas you can discuss according to your needs and priorities. [^28]"
     },
     {
       "type": "paragraph",
@@ -305,6 +305,10 @@
     {
       "type": "paragraph",
       "text": "Start with the questions most relevant to your life now. A thoughtful checkup is not about collecting the most tests. It is about understanding your health, choosing appropriate preventive care, and knowing what to do next."
+    },
+    {
+      "type": "paragraph",
+      "text": "Looking for an ongoing provider? Read our [guide to finding a family doctor](/blog/how-to-find-family-doctor-edmonton/). If a new concern arises before your checkup, review [walk-in and family doctor care options](/blog/walk-in-clinic-vs-family-doctor-edmonton/)."
     }
   ],
   "references": [
@@ -388,5 +392,15 @@
       "label": "Edmonton Doctors: Locations",
       "href": "/locations/"
     }
-  ]
+  ],
+  "modified": "2026-09-11",
+  "image": {
+    "src": "/images/blog/doctor-consultation.webp",
+    "alt": "Doctor and patient discussing health questions during a consultation"
+  },
+  "inlineImage": {
+    "src": "/images/blog/walk-in-care-consultation.webp",
+    "alt": "A clinician listening to a patient in a bright consultation area",
+    "caption": "A clear conversation helps you understand your care and the next steps."
+  }
 }

@@ -5,7 +5,7 @@
   "seoTitle": "How to Find a Family Doctor in Edmonton | Patient Guide",
   "description": "Looking for a family doctor in Edmonton? Learn how to check availability, register as a new patient, and prepare for your first clinic appointment.",
   "category": "Finding a doctor",
-  "published": "2026-09-11",
+  "published": "2026-08-14",
   "readingMinutes": 10,
   "blocks": [
     {
@@ -27,7 +27,7 @@
     },
     {
       "type": "paragraph",
-      "text": "A family doctor provides ongoing primary care rather than focusing only on one illness or body system. That can include assessing new symptoms, reviewing medications, discussing preventive care, following chronic conditions, and arranging specialist involvement when appropriate. Primary Care Alberta describes family doctors as providers of continuing, comprehensive care for people of all ages. [^1]"
+      "text": "A family doctor provides ongoing primary care rather than focusing only on one illness or body system. That can include assessing new symptoms, reviewing medications, discussing [preventive care](/services/vaccinations-preventative-care/), following [chronic conditions](/services/chronic-disease-management/), and arranging specialist involvement when appropriate. [Primary Care Alberta](https://www.primarycarealberta.ca/) describes family doctors as providers of continuing, comprehensive care for people of all ages. [^1]"
     },
     {
       "type": "paragraph",
@@ -161,7 +161,7 @@
     },
     {
       "type": "paragraph",
-      "text": "If you are running low before the first appointment, contact your existing prescriber or pharmacist promptly for advice. Do not assume a registration request includes a prescription renewal."
+      "text": "If you are running low before the first appointment, contact your existing prescriber or pharmacist promptly for advice. Do not assume a registration request includes a [prescription renewal](/services/prescription-renewals/)."
     },
     {
       "type": "heading",
@@ -178,7 +178,7 @@
     },
     {
       "type": "paragraph",
-      "text": "Do not assume that becoming a new patient automatically requires a complete physical examination or a standard package of blood tests. Choosing Wisely Canada advises that examinations and testing should be guided by individual needs rather than performed routinely for every healthy person. [^9]"
+      "text": "Do not assume that becoming a new patient automatically requires a complete physical examination or a standard package of blood tests. [Choosing Wisely Canada](https://choosingwiselycanada.org/pamphlet/health-check-ups/) advises that examinations and testing should be guided by individual needs rather than performed routinely for every healthy person. [^9]"
     },
     {
       "type": "paragraph",
@@ -237,7 +237,7 @@
     },
     {
       "type": "paragraph",
-      "text": "For non-emergency concerns, ask the clinic whether a walk-in assessment or another appointment option is appropriate. Explain that you have submitted a registration request, but avoid assuming that this means a physician has already taken responsibility for your ongoing care."
+      "text": "For non-emergency concerns, ask the clinic whether a [walk-in assessment](/walk-in/) or another appointment option is appropriate. Explain that you have submitted a registration request, but avoid assuming that this means a physician has already taken responsibility for your ongoing care."
     },
     {
       "type": "heading",
@@ -250,7 +250,7 @@
     },
     {
       "type": "paragraph",
-      "text": "AHCIP covers medically necessary physician services for eligible people, but some services, including certain medical forms and third-party examinations, are not covered. Ask about any applicable fee before requesting employment, insurance, or other administrative paperwork. [^11]"
+      "text": "[AHCIP](https://www.alberta.ca/ahcip-what-is-covered) covers medically necessary physician services for eligible people, but some services, including certain medical forms and third-party examinations, are not covered. Ask about any applicable fee before requesting employment, insurance, or other administrative paperwork. [^11]"
     },
     {
       "type": "paragraph",
@@ -293,6 +293,10 @@
     {
       "type": "paragraph",
       "text": "You do not need to have every healthcare question solved before making contact. A clear request, a brief health summary, and realistic expectations are enough to begin the conversation."
+    },
+    {
+      "type": "paragraph",
+      "text": "For help between appointments, see our [guide to walk-in clinics and family doctors](/blog/walk-in-clinic-vs-family-doctor-edmonton/). You can also [prepare for a preventive health visit](/blog/health-checkups-preventive-care-edmonton/)."
     }
   ],
   "references": [
@@ -351,5 +355,15 @@
       "label": "Government of Alberta: Health care services covered in Alberta",
       "href": "https://www.alberta.ca/ahcip-what-is-covered"
     }
-  ]
+  ],
+  "modified": "2026-09-11",
+  "image": {
+    "src": "/images/blog/clinic-welcome.webp",
+    "alt": "Doctor welcoming a patient in a bright clinic reception"
+  },
+  "inlineImage": {
+    "src": "/images/blog/walk-in-care-consultation.webp",
+    "alt": "A clinician listening to a patient in a bright consultation area",
+    "caption": "A clear conversation helps you understand your care and the next steps."
+  }
 }

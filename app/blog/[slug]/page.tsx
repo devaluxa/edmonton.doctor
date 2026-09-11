@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Fragment, type ReactNode } from "react";
 import JsonLd from "../../../components/seo/JsonLd";
 import BlogCards from "../../../components/shared/BlogCards";
+import BlogGraphic from "../../../components/shared/BlogGraphic";
 import { CtaBand, PageSection, SectionHeader } from "../../../components/shared/PageSystem";
 import { blogPosts, formatBlogDate, getBlogPost } from "../../../lib/blog";
 import { absoluteUrl, buildPageMetadata } from "../../../lib/seo/metadata";
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getBlogPost((await params).slug);
   if (!post) notFound();
   const metadata = buildPageMetadata({ ...post, title: post.seoTitle });
-  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", publishedTime: post.published, section: post.category }, twitter: { card: "summary", title: post.seoTitle, description: post.description } };
+  return { ...metadata, openGraph: { ...metadata.openGraph, type: "article", publishedTime: post.published, modifiedTime: post.modified, section: post.category, images: [{ url: absoluteUrl(post.image.src), alt: post.image.alt }] }, twitter: { card: "summary_large_image", title: post.seoTitle, description: post.description, images: [absoluteUrl(post.image.src)] } };
 }
 
 // Render the supplied articles' links and citations as React nodes, without raw HTML.
@@ -43,7 +44,7 @@ export default async function BlogArticle({ params }: Props) {
     <main className="medical-page">
       <JsonLd data={[buildBreadcrumbJsonLd(breadcrumbs), {
         "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.description,
-        datePublished: post.published, mainEntityOfPage: absoluteUrl(post.path), url: absoluteUrl(post.path), inLanguage: "en-CA", articleSection: post.category,
+        datePublished: post.published, dateModified: post.modified, image: absoluteUrl(post.image.src), mainEntityOfPage: absoluteUrl(post.path), url: absoluteUrl(post.path), inLanguage: "en-CA", articleSection: post.category,
         publisher: { "@type": "Organization", name: "Edmonton Doctors", url: absoluteUrl("/") },
         isPartOf: { "@type": "Blog", url: absoluteUrl("/blog/") }, citation: post.references.map((ref) => absoluteUrl(ref.href)),
       }]} />
@@ -56,6 +57,7 @@ export default async function BlogArticle({ params }: Props) {
             <p className={styles.meta}>Published <time dateTime={post.published}>{formatBlogDate(post.published)}</time> · {post.readingMinutes} min read · Edmonton Doctors</p>
           </div>
         </header>
+        <div className={`medical-container ${styles.featureImage}`}><img src={post.image.src} alt={post.image.alt} width={1200} height={640} fetchPriority="high" /></div>
         <div className={`medical-container ${styles.layout}`}>
           <nav className={styles.contents} aria-label="On this page">
             <h2>On this page</h2>
@@ -63,7 +65,11 @@ export default async function BlogArticle({ params }: Props) {
           </nav>
           <div className={styles.body}>
             <aside className={styles.note}>General patient information, not a diagnosis or a substitute for advice from your healthcare professional. Confirm current clinic availability directly. For health advice, call <a href="tel:811">811</a>; for a life-threatening emergency, call <a href="tel:911">911</a>.</aside>
-            {post.blocks.map((block, index) => <Fragment key={index}>{block.type === "heading" ? <h2 id={block.id}>{block.text}</h2> : <p>{inline(block.text)}</p>}</Fragment>)}
+            {post.blocks.map((block, index) => <Fragment key={index}>
+              {index === 18 ? <BlogGraphic slug={post.slug} /> : null}
+              {index === 42 ? <figure className={styles.inlineImage}><img src={post.inlineImage.src} alt={post.inlineImage.alt} width={1200} height={640} loading="lazy" decoding="async" /><figcaption>{post.inlineImage.caption}</figcaption></figure> : null}
+              {block.type === "heading" ? <h2 id={block.id}>{block.text}</h2> : <p>{inline(block.text)}</p>}
+            </Fragment>)}
             <section className={styles.sources} aria-labelledby="sources">
               <h2 id="sources">Sources & further reading</h2>
               <p>Resources referenced in this guide. Clinic availability and health guidance can change; check the linked source for current information.</p>
