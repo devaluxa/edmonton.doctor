@@ -15,6 +15,8 @@ import HomeFaq from "./_sections/HomeFaq";
 import HomeFinalCta from "./_sections/HomeFinalCta";
 import HomeHero from "./_sections/HomeHero";
 import HomeLocations from "./_sections/HomeLocations";
+import BlogCards from "../../components/shared/BlogCards";
+import { PageSection, SectionHeader } from "../../components/shared/PageSystem";
 import HomeProcess from "./_sections/HomeProcess";
 import HomeServicesPreview from "./_sections/HomeServicesPreview";
 
@@ -41,6 +43,11 @@ export default function Home() {
       <HomeServicesPreview />
       <HomeLocations />
       <HomeFaq />
+      <PageSection>
+        <SectionHeader eyebrow="Blog & News" heading="Helpful guides for your next visit" intro="Learn about finding a family doctor, choosing care, and preparing for a health checkup." />
+        <BlogCards />
+        <a className="medical-button medical-button-secondary mt-8" href="/blog/">Visit Blog & News</a>
+      </PageSection>
       <HomeFinalCta />
     </main>
   );

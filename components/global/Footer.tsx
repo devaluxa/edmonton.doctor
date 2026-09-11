@@ -59,7 +59,7 @@ export default function Footer() {
             {footerContent.servicesIntro}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-2 sm:mt-6 sm:gap-3">
-            {footerContent.serviceLinks.map((link) => (
+            {[...footerContent.serviceLinks, { href: "/blog/", label: "Blog & News" }].map((link) => (
               <a
                 className="inline-flex min-h-10 items-center justify-center rounded-md border border-white/10 bg-white/[0.06] px-3 py-2 text-xs font-extrabold text-white transition hover:-translate-y-0.5 hover:border-[var(--brand-color-primary)] hover:bg-[var(--brand-color-primary)] sm:px-4 sm:text-sm"
                 href={link.href}

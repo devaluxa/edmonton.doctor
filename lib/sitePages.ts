@@ -1,7 +1,6 @@
 import { businessConfig, businessLocation } from "./business/config";
 
-// TODO: replace with the production domain before launch.
-export const siteUrl = "https://placeholder.edmontondoctors.local";
+export const siteUrl = "https://edmonton.doctor";
 
 export type BreadcrumbItem = {
   label: string;
@@ -135,6 +134,7 @@ export const baseNavigation = [
   },
   { label: "Locations", href: "/locations/" },
   { label: "FAQ", href: "/faq/" },
+  { label: "Blog & News", href: "/blog/" },
   { label: "Contact", href: "/contact/" },
 ];
 
