@@ -6,6 +6,7 @@ import {
   socialLinks,
 } from "../business/config";
 import { absoluteUrl } from "./metadata";
+import { clinicPath } from "../clinicPages";
 import {
   businessName,
   faqItems,
@@ -54,7 +55,7 @@ export function buildMedicalClinicJsonLd(): JsonObject {
         "@type": "MedicalClinic",
         "@id": locationId(location.id),
         name: location.name,
-        url: siteUrl,
+        url: absoluteUrl(clinicPath(location.id)),
         telephone: location.phone,
         image: absoluteUrl(medicalImages.clinicReception.src),
         description: location.serviceArea,
@@ -87,11 +88,12 @@ export function buildPhysicianJsonLd(): JsonObject {
     "@graph": doctorProfiles.map((doctor) => ({
       "@type": "Physician",
       "@id": doctorId(doctor.name),
-      name: doctor.name,
+      name: doctor.fullName || doctor.name,
+      url: doctor.profileUrl ? absoluteUrl(doctor.profileUrl) : absoluteUrl("/family-doctor/"),
       jobTitle: doctor.title,
       description: doctor.intro,
       knowsLanguage: doctor.languages,
-      sameAs: doctor.profileUrl ? [doctor.profileUrl] : undefined,
+      sameAs: doctor.profileUrl?.startsWith("https://") ? [doctor.profileUrl] : undefined,
       medicalSpecialty: "FamilyMedicine",
       worksFor: {
         "@id": locationId(doctor.locationId),
@@ -121,6 +123,7 @@ export function buildBreadcrumbJsonLd(items: BreadcrumbItem[]): JsonObject {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${absoluteUrl(items[items.length - 1]?.href || "/")}#breadcrumb`,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,

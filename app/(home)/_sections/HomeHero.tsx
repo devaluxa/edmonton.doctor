@@ -4,6 +4,7 @@ import { ArrowRight, CalendarCheck, MapPin, PhoneCall } from "lucide-react";
 import { homeContent, medicalImages, primaryClinicLocation } from "../../../lib/business/config";
 import { MotionLink, Reveal, StaggerGroup, StaggerItem } from "../_components/Reveal";
 import styles from "./HomeHero.module.css";
+import { responsiveMedicalImage } from "../../../lib/images";
 
 const hero = homeContent.hero;
 
@@ -64,6 +65,7 @@ export default function HomeHero() {
               fetchPriority="high"
               loading="eager"
               src={medicalImages.heroClinic.src}
+              {...responsiveMedicalImage(medicalImages.heroClinic.src)}
             />
             <figcaption className={styles.panel}>
               <span>

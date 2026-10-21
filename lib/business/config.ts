@@ -240,23 +240,23 @@ export const brandAssetConfig: BrandAssets = {
 
 export const medicalImages = {
   heroClinic: {
-    fileName: "edmonton-doctors-hero-clinic.png",
-    src: "/images/medical/edmonton-doctors-hero-clinic.png",
+    fileName: "edmonton-doctors-hero-clinic.webp",
+    src: "/images/medical/edmonton-doctors-hero-clinic.webp",
     alt: "Bright family medicine clinic reception with a doctor welcoming patients",
   },
   doctorConsultation: {
-    fileName: "doctor-consultation.png",
-    src: "/images/medical/doctor-consultation.png",
+    fileName: "doctor-consultation.webp",
+    src: "/images/medical/doctor-consultation.webp",
     alt: "Family doctor speaking with a patient in a calm consultation room",
   },
   clinicReception: {
-    fileName: "clinic-reception.png",
-    src: "/images/medical/clinic-reception.png",
+    fileName: "clinic-reception.webp",
+    src: "/images/medical/clinic-reception.webp",
     alt: "Clean walk-in clinic reception area with soft daylight",
   },
   walkInCareConsultation: {
-    fileName: "walk-in-care-consultation.png",
-    src: "/images/medical/walk-in-care-consultation.png",
+    fileName: "walk-in-care-consultation.webp",
+    src: "/images/medical/walk-in-care-consultation.webp",
     alt: "Family doctor speaking with a patient in a bright walk-in clinic",
   },
   drKingsleyPortrait: {
@@ -398,6 +398,7 @@ const doctors: DoctorProfile[] = [
     languages: ["English"],
     status: "accepting",
     statusLabel: "Accepting New Patients",
+    profileUrl: "/doctors/dr-kingsley-lasing/",
     image: medicalImages.drKingsleyPortrait,
   },
   {

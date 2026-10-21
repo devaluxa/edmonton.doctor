@@ -140,7 +140,7 @@ export const baseNavigation = [
 
 export const homePageSeo: SeoConfig = {
   path: "/",
-  title: "Edmonton Doctors | Family Doctors Accepting New Patients",
+  title: "Edmonton Doctors | Family & Walk-In Clinics in Edmonton",
   description:
     "Edmonton Doctors helps patients register with family doctors accepting new patients and find walk-in clinic care in Edmonton, Alberta.",
 };
@@ -178,13 +178,13 @@ export const corePages = {
   },
   familyDoctors: {
     path: "/family-doctor/",
-    title: "Family Doctors Accepting New Patients Edmonton | Edmonton Doctors",
+    title: "Family Doctors in Edmonton Accepting New Patients",
     description:
       "Meet Edmonton family doctors at Beverly Medical Center and Balwin Medical Centre, including doctors accepting new patients.",
     eyebrow: "Family Doctors Accepting New Patients",
-    heading: "Family Doctors In Edmonton",
+    heading: "Find a Family Doctor in Edmonton",
     intro:
-      "Compare Beverly and Balwin family physicians, see who is accepting patients, and choose the right registration path.",
+      "Compare family doctors at Beverly Medical Center and Balwin Medical Centre in Edmonton. Check current new-patient availability, languages, locations, and registration options.",
   },
   locations: {
     path: "/locations/",
@@ -267,7 +267,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         eyebrow: "Family Medicine Services",
         heading: "Ongoing Family Medicine Support",
         intro:
-          "Family medicine provides ongoing primary care for patients of all ages, including children, adults, seniors, and households looking for long-term health support. For family medicine Edmonton patients, Edmonton Doctors helps with preventive visits, medication reviews, screening guidance, chronic condition follow-up, new health concerns, and practical care planning.",
+          "Family medicine provides ongoing primary care for patients of all ages, including children, adults, seniors, and households looking for long-term health support. At Beverly Medical Center and Balwin Medical Centre, patients can ask about preventive visits, medication reviews, screening, chronic conditions, and ongoing care.",
       },
       serviceCards: [
         {
@@ -305,7 +305,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         eyebrow: "Care Needs",
         heading: "What Family Medicine Can Help With",
         intro:
-          "A family medicine clinic can support many common health needs, from routine checkups to ongoing condition management. Your provider can help assess symptoms, review your health history, discuss treatment options, and recommend follow-up when needed. This includes preventive health visits Edmonton patients book for risk review, medication review Edmonton appointments, and chronic disease follow-up Edmonton care when appropriate.",
+          "A family medicine clinic can support many common health needs, from routine checkups to ongoing condition management. Your provider can help assess symptoms, review your health history, discuss treatment options, and recommend follow-up when needed. Visits may include preventive health reviews, medication discussions, and follow-up for chronic conditions, based on your individual needs.",
         columns: "two",
         items: [
           "General health concerns",
@@ -325,7 +325,7 @@ export const clinicServicePages: ClinicServicePage[] = [
         eyebrow: "Local Primary Care",
         heading: "Family Medicine in North Edmonton and Northeast Edmonton",
         intro:
-          "Edmonton Doctors supports patients across Edmonton, including North Edmonton and Northeast Edmonton. Patients visit for ongoing primary care, preventive health visits, medication reviews, chronic condition follow-up, and family doctor registration support. Patients searching for a North Edmonton family doctor, Northeast Edmonton family medicine, a family medicine clinic Edmonton option, a family doctor Edmonton visit, primary care Edmonton services, or a family doctor accepting new patients Edmonton can call or register to ask about availability.",
+          "Looking for a North Edmonton family doctor? Compare physicians at Balwin Medical Centre on 127 Avenue or Beverly Medical Center on 118 Avenue in Northeast Edmonton. Review each clinic's location and contact details, then call or request registration to confirm availability for ongoing family medicine.",
         communities: [
           "North Edmonton",
           "Northeast Edmonton",
@@ -963,7 +963,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Do you collect health card numbers online?",
     answer:
-      "No. The v1 registration form is a minimal lead form and does not ask for health card numbers, dates of birth, diagnosis history, or detailed medical history.",
+      "No. The initial registration form asks for contact and scheduling details. Do not include health card numbers, dates of birth, diagnoses, or detailed medical history.",
   },
   {
     question: "Are walk-ins welcome?",

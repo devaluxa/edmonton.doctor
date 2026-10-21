@@ -1,5 +1,7 @@
 "use client";
 
+import { trackClinicEvent } from "../../lib/analytics";
+
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
@@ -395,6 +397,7 @@ export default function RegistrationLeadForm({
       setFields(initialFields);
       resetTurnstile();
       startedAt.current = Date.now();
+      trackClinicEvent("generate_lead");
       router.push(thankYouHref);
     } catch (error) {
       setStatus({

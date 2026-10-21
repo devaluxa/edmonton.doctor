@@ -31,7 +31,7 @@ test.describe("walk-in clinic page review", () => {
     await expect(locationCards).toHaveCount(2);
     await expect(page.getByText("Dr Kingsley Lasing MD")).toHaveCount(0);
 
-    const heroImage = page.locator('img[src="/images/medical/walk-in-care-consultation.png"]');
+    const heroImage = page.locator('img[src="/images/medical/walk-in-care-consultation.webp"]');
     await expect(heroImage).toBeVisible();
     await expect
       .poll(() =>
@@ -58,7 +58,7 @@ test.describe("walk-in clinic page review", () => {
     expect(heroImageFitsContainer).toBe(true);
 
     const imageResponse = await request.get(
-      new URL("/images/medical/walk-in-care-consultation.png", baseURL).toString(),
+      new URL("/images/medical/walk-in-care-consultation.webp", baseURL).toString(),
     );
     expect(imageResponse.status()).toBeLessThan(400);
 
@@ -97,7 +97,7 @@ test.describe("walk-in clinic page review", () => {
     await page.setViewportSize({ width: 375, height: 900 });
     await page.goto("/walk-in/");
 
-    const heroImage = page.locator('img[src="/images/medical/walk-in-care-consultation.png"]');
+    const heroImage = page.locator('img[src="/images/medical/walk-in-care-consultation.webp"]');
     await expect(heroImage).toBeVisible();
 
     const layout = await heroImage.evaluate((image) => {

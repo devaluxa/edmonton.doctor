@@ -90,27 +90,25 @@ Pull requests only run the build and do not deploy.
 
 ## Production Redirects
 
-The static export includes a noindex moved page for `/services/walk-in-care/`, but the production host should serve a real permanent redirect for SEO.
+The Next.js build is a static export. Permanent redirects are applied in the CloudPanel NGINX vhost, not through Next.js server redirects. The complete snippet is in `deploy/seo-redirects.conf`; add it inside the `edmonton.doctor` server block, before the asset location. It preserves query parameters and supports URLs with and without a trailing slash.
 
-Add these exact-match redirects in the CloudPanel NGINX vhost for `edmonton.doctor`:
+Do not redirect `/doctors/dr-kingsley-lasing/`: it is an indexable physician profile again.
 
-```nginx
-location = /services/walk-in-care {
-  return 301 /walk-in/;
-}
+Verify each legacy route returns HTTP 301 with the expected Location header, then confirm the destination returns 200. Keep the moved-page fallbacks for static previews.
 
-location = /services/walk-in-care/ {
-  return 301 /walk-in/;
-}
+## Search Console and Analytics
 
-location = /services/family-medicine {
-  return 301 /services/family-medicine-edmonton/;
-}
+`public/googlece79505fe13cdbe6.html` is the Search Console ownership verification file for the HTTPS URL-prefix property. Keep it in all deployments.
 
-location = /services/family-medicine/ {
-  return 301 /services/family-medicine-edmonton/;
-}
-```
+Google Tag Manager `GTM-NBJH3GNB` configures GA4 `G-H0EWZ53PXR`. Do not add a second direct gtag configuration for the same ID. The runtime only loads tags on the production hostname, keeping localhost and preview tests out of production reporting.
+
+Successful registration responses emit `generate_lead`; rejected responses do not. Phone and Healthquest booking links emit `click_to_call` and `booking_click`. These events contain no form values, doctor choices, health information, or contact details. Mark `generate_lead` as a key event in GA4. Do not count thank-you page refreshes as new registrations.
+
+The GA4 property also contains older EdmontonMDs page titles. Use a hostname filter when comparing domains rather than deleting historic data.
+
+## Image Assets
+
+Responsive WebP variants of the four existing medical PNG illustrations are committed under `public/images/medical/`. To regenerate them with the installed Sharp package, run `node scripts/optimize-medical-images.mjs`. The original PNGs remain available for existing external references.
 
 ## Cloudflare And SSL
 

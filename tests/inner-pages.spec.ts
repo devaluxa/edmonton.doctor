@@ -40,10 +40,6 @@ const legacyMovedPages = [
     target: "/register/",
   },
   {
-    path: "/doctors/dr-kingsley-lasing/",
-    target: "/family-doctor/",
-  },
-  {
     path: "/services/womens-mens-childrens-health/",
     target: "/services/womens-health-edmonton/",
   },
@@ -166,7 +162,7 @@ test.describe("inner medical page system", () => {
     await page.goto("/family-doctor/");
 
     await expect(
-      page.getByRole("heading", { name: "Family Doctors In Edmonton" }),
+      page.getByRole("heading", { name: "Find a Family Doctor in Edmonton" }),
     ).toBeVisible();
     await expect(page.getByText("Beverly Medical Doctors")).toHaveCount(0);
     await expect(page.getByText("Balwin Medical Clinic Doctors")).toHaveCount(0);
@@ -462,7 +458,7 @@ test.describe("inner medical page system", () => {
       "Health Screening Guidance",
       "Children's health concerns",
       "North Edmonton family doctor",
-      "Northeast Edmonton family medicine",
+      "Beverly Medical Center on 118 Avenue in Northeast Edmonton",
       "Availability may vary",
       "call 911",
     ]) {

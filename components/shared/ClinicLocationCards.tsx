@@ -1,3 +1,4 @@
+import { clinicPath } from "../../lib/clinicPages";
 import type { ClinicLocation } from "../../lib/business/config";
 
 type ClinicLocationCardsProps = {
@@ -37,7 +38,7 @@ export default function ClinicLocationCards({
             </p>
           ) : null}
           <h3 className="medical-location-title">
-            {location.name}
+            <a href={clinicPath(location.id)}>{location.name}</a>
           </h3>
 
           <div

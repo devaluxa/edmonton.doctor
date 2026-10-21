@@ -6,6 +6,7 @@ import {
   PageHero,
   PageSection,
   SectionHeader,
+  StepCards,
 } from "../../components/shared/PageSystem";
 import {
   clinicLocationList,
@@ -27,6 +28,7 @@ import {
 } from "../../lib/sitePages";
 import { doctorPageVisual } from "../../lib/serviceHeroVisuals";
 import styles from "./FamilyDoctorPage.module.css";
+import { clinicPath } from "../../lib/clinicPages";
 
 export const metadata: Metadata = buildPageMetadata(corePages.familyDoctors);
 
@@ -64,6 +66,9 @@ function DoctorCard({
   index: number;
 }) {
   const action = doctorAction(doctor);
+  const clinic = clinicLocationList.find(
+    (entry) => entry.id === doctor.locationId,
+  );
   const isUnavailable = doctor.status === "not-accepting";
   const visibleFocusAreas = doctor.focusAreas.slice(0, 5);
   const isReversed = index % 2 === 1;
@@ -110,6 +115,13 @@ function DoctorCard({
         </div>
         <h3 className={styles.name}>{doctor.name}</h3>
         <p className={styles.title}>{doctor.title}</p>
+        {clinic ? (
+          <p className={styles.languages}>
+            <a href={clinicPath(clinic.id)}>{clinic.name}</a>
+            <br />
+            {clinic.addressLines.join(", ")}
+          </p>
+        ) : null}
         <p className={styles.intro}>{doctor.intro}</p>
 
         <div className={styles.chips} aria-label={`${doctor.name} focus areas`}>
@@ -138,8 +150,16 @@ function DoctorCard({
               <a
                 className="medical-button medical-button-secondary"
                 href={doctor.profileUrl}
-                rel="noreferrer"
-                target="_blank"
+                rel={
+                  doctor.profileUrl.startsWith("https://")
+                    ? "noreferrer"
+                    : undefined
+                }
+                target={
+                  doctor.profileUrl.startsWith("https://")
+                    ? "_blank"
+                    : undefined
+                }
               >
                 View Profile
               </a>
@@ -203,10 +223,37 @@ export default function FamilyDoctorPage() {
       </PageSection>
 
       <PageSection tone="muted">
+        <SectionHeader
+          eyebrow="Becoming a patient"
+          heading="How to register with a family doctor"
+          intro="Doctor availability can change. Confirm the current intake status with your chosen clinic before planning a visit."
+        />
+        <StepCards
+          steps={[
+            {
+              title: "Choose a doctor and clinic",
+              description:
+                "Compare intake status, languages, care interests, and the location that fits your routine.",
+            },
+            {
+              title: "Request registration",
+              description:
+                "Send your contact and scheduling details. Keep detailed medical information off the initial form.",
+            },
+            {
+              title: "Confirm the next step",
+              description:
+                "The clinic team follows up about availability and appointment arrangements. A request is not a confirmed booking.",
+            },
+          ]}
+        />
+      </PageSection>
+
+      <PageSection>
         <CtaBand
           eyebrow="Registration"
           heading="Ready To Register With A Family Doctor?"
-          description="Submit the new patient registration form while spots are available, or call Beverly Medical Center for registration questions."
+          description="Request registration with your preferred doctor or contact the appropriate clinic to confirm current availability."
           primaryAction={{
             href: serviceRequestLinks.register,
             label: primaryCtaLabel,

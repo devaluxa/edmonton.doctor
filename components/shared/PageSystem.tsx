@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import type { ReactNode } from "react";
+import { responsiveMedicalImage } from "../../lib/images";
 import type { ServiceHeroVisual } from "../../lib/serviceHeroVisuals";
 
 type PageAction = {
@@ -133,6 +134,7 @@ export function PageHero({
             decoding="async"
             loading="eager"
             src={visual.src}
+            {...responsiveMedicalImage(visual.src)}
             style={{ objectPosition: imagePosition }}
           />
         </figure>
